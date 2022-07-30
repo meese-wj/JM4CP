@@ -1,4 +1,4 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/katex/katex.min.css"> <link rel=stylesheet  href="/libs/highlight/styles/github.min.css"> <link href="/css/franklin.css" rel=stylesheet > <link href="/css/vela.css" rel=stylesheet > <script src="/libs/vela/jquery.min.js"></script> <link rel=icon  href="/assets/favicon.png"> <title>Julian Methods for Computational Physics</title> <div class="main-nav slideout-menu slideout-menu-left" id=menu > <div class=flex-container > <span class=sidebar-brand > <h3 style='font-size: 30px'>JM4CP</h3> </span> </div> <nav class=sidebar-nav > <ul class=metismenu  id=metismenu  > <li><a href="/index.html">Home</a> <li><a href="" class=has-arrow >Getting Started</a> <ul> <li><a href="/pages/GettingStarted/gettingstarted_home">Tutorial Home</a> <li><a href="/pages/GettingStarted/installation">Installation Instructions</a> <li><a href="/pages/GettingStarted/pkg">using Pkg</a> <li><a href="/pages/GettingStarted/juliabasics">Julia Basics</a> </ul> </ul> </nav> </div> <main id=panel  class="slidout-panel slideout-panel-left"> <div class="toggle-button hamburger hamburger--spin"> <div class=hamburger-box > <div class=hamburger-inner ></div> </div> </div> <h1 class="page title">How to use Franklin</h1> <hr> <div class=franklin-content ><h1 id=how_to_use_franklin ><a href="#how_to_use_franklin" class=header-anchor >How to use Franklin</a></h1> <p><div class=franklin-toc ><ol><li><a href="#the_base_with_markdown">The base with Markdown</a><ol><li><a href="#symbols_and_html_entities">Symbols and html entities</a></ol><li><a href="#basic_franklin_extensions">Basic Franklin extensions</a><ol><li><a href="#divs">Divs</a><li><a href="#latex_and_maths">LaTeX and Maths</a><li><a href="#a_quick_note_on_whitespaces">A quick note on whitespaces</a><li><a href="#raw_html">Raw HTML</a></ol><li><a href="#pages_and_structure">Pages and structure</a><li><a href="#references_not_really">References &#40;not really&#41;</a><li><a href="#header_and_footer">Header and Footer</a></ol></div> </p> <p>This section is meant as a refresher if you&#39;re new to Franklin. Have a look at both how the website renders and the corresponding markdown &#40;<code>index.md</code>&#41;. Modify at will to get a feeling for how things work&#33;</p> <p>Ps: if you want to modify the header or footer or the general look of the website, adjust the files in</p> <ul> <li><p><code>src/_css/</code> and</p> <li><p><code>src/_html_parts/</code>.</p> </ul> <h2 id=the_base_with_markdown ><a href="#the_base_with_markdown" class=header-anchor >The base with Markdown</a></h2> <pre><code class="julia hljs">hi = <span class=hljs-string >&quot;Hello&quot;</span></code></pre>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/JM4CP/libs/katex/katex.min.css"> <link rel=stylesheet  href="/JM4CP/libs/highlight/styles/github.min.css"> <link href="/JM4CP/css/franklin.css" rel=stylesheet > <link href="/JM4CP/css/vela.css" rel=stylesheet > <script src="/JM4CP/libs/vela/jquery.min.js"></script> <link rel=icon  href="/JM4CP/assets/favicon.png"> <title>Julian Methods for Computational Physics</title> <div class="main-nav slideout-menu slideout-menu-left" id=menu > <div class=flex-container > <span class=sidebar-brand > <h3 style='font-size: 30px'>JM4CP</h3> </span> </div> <nav class=sidebar-nav > <ul class=metismenu  id=metismenu  > <li><a href="/JM4CP/index.html">Home</a> <li><a href="" class=has-arrow >Getting Started</a> <ul> <li><a href="/JM4CP/pages/GettingStarted/gettingstarted_home">Tutorial Home</a> <li><a href="/JM4CP/pages/GettingStarted/installation">Installation Instructions</a> <li><a href="/JM4CP/pages/GettingStarted/pkg">using Pkg</a> <li><a href="/JM4CP/pages/GettingStarted/juliabasics">Julia Basics</a> </ul> </ul> </nav> </div> <main id=panel  class="slidout-panel slideout-panel-left"> <div class="toggle-button hamburger hamburger--spin"> <div class=hamburger-box > <div class=hamburger-inner ></div> </div> </div> <h1 class="page title">How to use Franklin</h1> <hr> <div class=franklin-content ><h1 id=how_to_use_franklin ><a href="#how_to_use_franklin" class=header-anchor >How to use Franklin</a></h1> <p><div class=franklin-toc ><ol><li><a href="#the_base_with_markdown">The base with Markdown</a><ol><li><a href="#symbols_and_html_entities">Symbols and html entities</a></ol><li><a href="#basic_franklin_extensions">Basic Franklin extensions</a><ol><li><a href="#divs">Divs</a><li><a href="#latex_and_maths">LaTeX and Maths</a><li><a href="#a_quick_note_on_whitespaces">A quick note on whitespaces</a><li><a href="#raw_html">Raw HTML</a></ol><li><a href="#pages_and_structure">Pages and structure</a><li><a href="#references_not_really">References &#40;not really&#41;</a><li><a href="#header_and_footer">Header and Footer</a></ol></div> </p> <p>This section is meant as a refresher if you&#39;re new to Franklin. Have a look at both how the website renders and the corresponding markdown &#40;<code>index.md</code>&#41;. Modify at will to get a feeling for how things work&#33;</p> <p>Ps: if you want to modify the header or footer or the general look of the website, adjust the files in</p> <ul> <li><p><code>src/_css/</code> and</p> <li><p><code>src/_html_parts/</code>.</p> </ul> <h2 id=the_base_with_markdown ><a href="#the_base_with_markdown" class=header-anchor >The base with Markdown</a></h2> <pre><code class="julia hljs">hi = <span class=hljs-string >&quot;Hello&quot;</span></code></pre>
 <p>The <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">standard markdown syntax</a> can be used such as titles using <code>#</code>, lists:</p>
 <ul>
 <li><p>element with <strong>bold</strong></p>
@@ -82,7 +82,7 @@
 
 <div class=row >
   <div class=container >
-    <img class=left  src="/assets/rndimg.jpg">
+    <img class=left  src="/JM4CP/assets/rndimg.jpg">
     <p>
     Marine iguanas are truly splendid creatures. They're found on the Gálapagos islands, have skin that basically acts as a solar panel, can swim and may have the ability to adapt their body size depending on whether there's food or not.
     </p>
@@ -95,18 +95,18 @@
 
 <p><strong>Note 1</strong>: again, entire such blocks can be made into latex-like commands via <code>\newcommand&#123;\mynewblock&#125;&#91;1&#93;&#123;...&#125;</code>.</p>
 <p><strong>Note 2</strong>: whatever is in a raw HTML block is <em>not</em> further processed &#40;so you can&#39;t have LaTeX in there for instance&#41;. A partial way around this is to use <code>@@...</code> blocks which <em>will</em> be recursively parsed. The following code gives the same result as above with the small difference that there is LaTeX being processed in the inner div.</p>
-<div class=row ><div class=container ><div class=left ><img src="/assets/rndimg.jpg" alt="" /></div></div>
+<div class=row ><div class=container ><div class=left ><img src="/JM4CP/assets/rndimg.jpg" alt="" /></div></div>
 <p>Marine iguanas are <strong>truly splendid</strong> creatures. They&#39;re not found in equations like <span class=katex ><span class=katex-mathml ><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>exp</mi><mo>⁡</mo><mo stretchy=false >(</mo><mo>−</mo><mi>i</mi><mi>π</mi><mo stretchy=false >)</mo><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\exp(-i\pi)+1</annotation></semantics></math></span><span class=katex-html  aria-hidden=true ><span class=base ><span class=strut  style="height:1em;vertical-align:-0.25em;"></span><span class=mop >exp</span><span class=mopen >(</span><span class=mord >−</span><span class="mord mathnormal" style="margin-right:0.03588em;">iπ</span><span class=mclose >)</span><span class=mspace  style="margin-right:0.2222em;"></span><span class=mbin >+</span><span class=mspace  style="margin-right:0.2222em;"></span></span><span class=base ><span class=strut  style="height:0.6444em;"></span><span class=mord >1</span></span></span></span>. But they&#39;re still quite cool. 
 <div style="clear: both"></div>
 </p></div>
 <h2 id=pages_and_structure ><a href="#pages_and_structure" class=header-anchor >Pages and structure</a></h2>
 <p>Here are a few empty pages connecting to the menu links to show where files can go and the resulting paths. &#40;It&#39;s probably best if you look at the source folder for this&#41;.</p>
 <ul>
-<li><p><a href="/menu1/">menu 1</a></p>
+<li><p><a href="/JM4CP/menu1/">menu 1</a></p>
 
-<li><p><a href="/menu2/">menu 2</a></p>
+<li><p><a href="/JM4CP/menu2/">menu 2</a></p>
 
-<li><p><a href="/menu3/">menu 3</a></p>
+<li><p><a href="/JM4CP/menu3/">menu 3</a></p>
 
 </ul>
 <h2 id=references_not_really ><a href="#references_not_really" class=header-anchor >References &#40;not really&#41;</a></h2>
@@ -127,8 +127,8 @@
 </div>
 </div>
   </main> 
-  <script src="/libs/vela/metisMenu.min.js"></script>
-  <script src="/libs/vela/slideout.min.js"></script>
+  <script src="/JM4CP/libs/vela/metisMenu.min.js"></script>
+  <script src="/JM4CP/libs/vela/slideout.min.js"></script>
   
     
 
@@ -136,5 +136,5 @@
 
   
   
-    <script src="/libs/highlight/highlight.min.js"></script>
+    <script src="/JM4CP/libs/highlight/highlight.min.js"></script>
 <script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
