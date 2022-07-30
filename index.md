@@ -27,6 +27,12 @@ This website serves as my repository of notes and tutorials on how to use _Julia
 
 I also will prove to you that while Julian design practices may seem crazy compared to ones we're used to, they are very natural extensions to how we, as physicists, organize abstract and concrete concepts in our everyday lives.
 
+## Tutorial Links
+
+These notes and tutorials are always accessible from the navigation pane in the upper-left corner of the screen. Otherwise, one can find them here:
+
+1. [Getting Started](/pages/GettingStarted/gettingstarted)
+
 ## Helpful Resources
 
 As I said above, I taught myself how to use Julia. What that actually translates to is that I've _learned_ from an online community of generous teachers who publish many of their educational materials for free. Here's a list, in no particular order, of resources that I cannot recommend enough to anyone interested in Julia programming.
