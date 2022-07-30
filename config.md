@@ -13,9 +13,9 @@ ignore = ["node_modules/"]
 
 # RSS (the website_{title, descr, url} must be defined to get RSS)
 generate_rss = true
-website_title = "Franklin Template"
-website_descr = "Example website using Franklin"
-website_url   = "https://tlienart.github.io/FranklinTemplates.jl/"
+website_title = "Julian Methods for Computational Physics"
+website_descr = "Assorted Notes from a Self-Taught Julia Enthusiast"
+website_url   = "https://meese-wj.github.io/JM4CP/"
 +++
 
 @def prepath = "JM4CP"
