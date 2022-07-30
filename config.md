@@ -13,6 +13,8 @@ website_descr = "Assorted Notes from a Self-Taught Julia Enthusiast"
 website_url   = "https://meese-wj.github.io/JM4CP/"
 +++
 
+@def prepath = "JM4CP"
+
 <!--
 Add here global latex commands to use throughout your pages.
 -->
