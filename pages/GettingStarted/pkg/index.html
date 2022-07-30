@@ -1,0 +1,64 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/libs/highlight/styles/github.min.css"> <link href="/css/franklin.css" rel=stylesheet > <link href="/css/vela.css" rel=stylesheet > <script src="/libs/vela/jquery.min.js"></script> <link rel=icon  href="/assets/favicon.png"> <title>Julian Methods for Computational Physics</title> <div class="main-nav slideout-menu slideout-menu-left" id=menu > <div class=flex-container > <span class=sidebar-brand > <h3 style='font-size: 30px'>JM4CP</h3> </span> </div> <nav class=sidebar-nav > <ul class=metismenu  id=metismenu  > <li><a href="/index.html">Home</a> <li><a href="" class=has-arrow >Getting Started</a> <ul> <li><a href="/pages/GettingStarted/gettingstarted_home">Tutorial Home</a> <li><a href="/pages/GettingStarted/installation">Installation Instructions</a> <li><a href="/pages/GettingStarted/pkg">using Pkg</a> <li><a href="/pages/GettingStarted/juliabasics">Julia Basics</a> </ul> </ul> </nav> </div> <main id=panel  class="slidout-panel slideout-panel-left"> <div class="toggle-button hamburger hamburger--spin"> <div class=hamburger-box > <div class=hamburger-inner ></div> </div> </div> <h1 class="page title">using Pkg</h1> <hr> <div class=franklin-content ><h1 id=pkg_julias_built-in_package_manager ><a href="#pkg_julias_built-in_package_manager" class=header-anchor ><code>Pkg</code>: Julia&#39;s Built-in Package Manager</a></h1> <p><em>Last Updated: July 30, 2022</em></p> <p>In this page, we will quickly and easily create a new project environment in Julia using its own package manger, named <code>Pkg</code>.</p> <div class=franklin-toc ><ol><li><a href="#motivation">Motivation</a><li><a href="#how_to_fish_for_packages_with_pkg">How to fish for packages with <code>Pkg</code></a><li><a href="#the_generated_toml_files">The generated <code>TOML</code> files</a><ol><li><a href="#the_projecttoml_file">The <code>Project.toml</code> file</a><li><a href="#the_manifesttoml_file">The <code>Manifest.toml</code> file</a><li><a href="#why_not_just_one_toml_file">Why not just one <code>TOML</code> file?</a></ol><li><a href="#recap_and_further_reading">Recap and further reading</a><li><a href="#footnotes">Footnotes</a></ol></div> <h2 id=motivation ><a href="#motivation" class=header-anchor >Motivation</a></h2> <p>Since we&#39;re pretty early on in these tutorials at this point, I will hold off on a lot of detail as to why making a local project environment is preferred over maintaining a large global environment. But I&#39;ll give two reasons for now just to keep your interest:</p> <ol> <li><p>Smaller local projects typically have fewer dependencies, and therefore updating those dependencies is faster and less prone to conflicts.</p> <li><p>By leveraging <code>Pkg</code>, we can make our work extremely <em>portable</em> across different machines. This means that I can send someone else my code and just a couple of small text files and <em>boom&#33;</em> they can recreate everything I had and completely <em>reproduce</em> my work.</p> </ol> <p>These two reasons actually make collaborating with Julia projects very simple and great for scientists. How many times have you tried downloading some code and it can&#39;t work out of the box? This method of local environments really helps reduce this risk by improving the <em>portability</em> and <em>reproducibility</em> of scientific projects written in Julia.</p> <h2 id=how_to_fish_for_packages_with_pkg ><a href="#how_to_fish_for_packages_with_pkg" class=header-anchor >How to fish for packages with <code>Pkg</code></a></h2> <p>To access the <code>Pkg</code> from the Julia <code>REPL</code>, simply hit <code>&#93;</code> and see that the <code>julia&gt;</code> heading change to <code>pkg&gt;</code>. Now, to create a new project environment, type <code>activate .</code> like so:</p> <pre><code class="julia-repl hljs"><span class=hljs-metap>(v1.7) pkg&gt;</span> activate .</code></pre>
+<p>This will change the <code>REPL</code> heading again from <code>pkg&gt;</code> to <code>&#40;fish&#41; pkg&gt;</code>, given a directory name <code>fish</code>. So now we should be looking at </p>
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(fish) pkg&gt;</span></code></pre>
+<p>If you hit <code>Backspace</code>, you leave <code>Pkg</code> mode and will see <code>julia&gt;</code> again. In an empty <code>fish</code> directory, typing </p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > readdir()</span></code></pre>
+<p>should yield nothing. This is because our newly <code>activate</code>d <code>fish</code> project has no dependencies. So let&#39;s add a couple. Hit <code>&#93;</code> to enter <code>Pkg</code> mode and type</p>
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(fish) pkg&gt;</span> add Statistics StaticArrays</code></pre>
+<p>and hit <code>Enter</code>. This will download the supplied list of packages from Julia&#39;s <a href="https://github.com/JuliaRegistries/General">General Registry</a> by default. In this case we asked for two packages. When it&#39;s done, hit <code>Backspace</code> to leave <code>Pkg</code> mode, and then type </p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > readdir()</span></code></pre>
+<p>again. Now, you should see two new files: <code>Project.toml</code> and <code>Manifest.toml</code>.</p>
+<p>Congrats&#33; You&#39;ve now set up a new Julia project environment called <code>fish</code> that has two dependencies: <code>Statistics.jl</code> and <code>StaticArrays.jl</code>. At this point, you could continue to play around within this environment, add more packages, delete others, <em>etc.</em>, without having your actions locally affect your global Julia environment<sup id="fnref:1"><a href="#fndef:1" class=fnref >[1]</a></sup>.</p>
+<h2 id=the_generated_toml_files ><a href="#the_generated_toml_files" class=header-anchor >The generated <code>TOML</code> files</a></h2>
+<p>Here I&#39;ll briefly discuss what these <code>TOML</code> files are and why Julia generated <em>two</em> of them.</p>
+<h3 id=the_projecttoml_file ><a href="#the_projecttoml_file" class=header-anchor >The <code>Project.toml</code> file</a></h3>
+<p>This file is used to uniquely specify a new project environment and list all of the packages it depends on – its <em>dependencies</em>. If this file already exists in a directory when one goes to <code>activate .</code> a new environment, the present <code>Project.toml</code> file will be used instead of creating a new one. So in this sense the local project environment is re-<code>activate</code>d.</p>
+<h3 id=the_manifesttoml_file ><a href="#the_manifesttoml_file" class=header-anchor >The <code>Manifest.toml</code> file</a></h3>
+<p>This file uniquely delineates not only the your new project environment&#39;s dependencies, but also all of the dependencies&#39; dependencies, and so on. The power of this file comes from another <code>Pkg</code> command:</p>
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(v1.7) pkg&gt;</span> instantiate .</code></pre>
+<p>which will not only pull the dependencies listed in the <code>Project.toml</code>, but also <em>all</em> of the specific package versions of every package listed in the <code>Manifest.toml</code>. This file and <code>instantiate</code> command is what allows for portability and reproducibility of Julia projects because it allows <em>anybody</em> to completely recreate the specific environment configuration that you used to run your code and get your specific results. </p>
+<p>Pretty cool, right?</p>
+<h3 id=why_not_just_one_toml_file ><a href="#why_not_just_one_toml_file" class=header-anchor >Why not just one <code>TOML</code> file?</a></h3>
+<p>If a lot of the power comes from the <code>Manifest.toml</code>, why not just use this one?</p>
+<p>It turns out that because of the way the Julia team have designed their package managment system, people who actually write Julia packages rarely need to include their <code>Manifest.toml</code>. Indeed, actually when one writes a package, they typically want it to be used by as many people as possible, without limiting their use cases by constraining them to a specific configured environment. So they test their packages on servers without sending the <code>Manifest.toml</code><sup id="fnref:2"><a href="#fndef:2" class=fnref >[2]</a></sup>, and let the test servers create their own local environments. If everything works out, then they can add their package to the General Registry, and we can download and use it in <em>our own</em> environments.</p>
+<p>Hooray for <em>code reuse</em>&#33;</p>
+<p>It is only when we need, say a collaborator, advisor, or TA, to reproduce our work that we absolutely <em>need</em> to send the <code>Manifest.toml</code>. In that case, they would <em>want</em> to be constrained by our specific local environment to obtain the same results we did.</p>
+<p>Hooray for <em>reproducibility</em> in science&#33;</p>
+<h2 id=recap_and_further_reading ><a href="#recap_and_further_reading" class=header-anchor >Recap and further reading</a></h2>
+<p>At this point, we&#39;ve covered the absolute basics as far as <code>using</code> Julia&#39;s <code>Pkg</code> manager to create local project environments. </p>
+<p>We created the <code>fish</code> environment with two dependencies, <code>Statistics.jl</code> and <code>StaticArrays.jl</code>, both of which we pulled from Julia&#39;s General Registry of packages. By adding these dependencies, we saw that <code>Pkg.jl</code> automatically generated a <code>Project.toml</code> and <code>Manifest.toml</code> in our project directory. We then discussed the differences between these files, and how the Julia team made it so that just these files make Julia code <em>reusable</em>, <em>portable</em>, and <em>reproducible</em>.</p>
+<p>I&#39;ve tip-toed around some other important details to avoid overwhelming you with so much information, especially if you&#39;re new, not just to Julia, but programming in general. For anyone interested in more information, you can find it at:</p>
+<ul>
+<li><p><a href="https://pkgdocs.julialang.org/v1/"><code>Pkg.jl</code> documentation.</a></p>
+
+<li><p><a href="https://pkgdocs.julialang.org/v1/toml-files/">Details on the <code>Project.toml</code> and <code>Manifest.toml</code>.</a></p>
+
+</ul>
+<h2 id=footnotes ><a href="#footnotes" class=header-anchor >Footnotes</a></h2>
+<p><table class=fndef  id="fndef:1">
+    <tr>
+        <td class=fndef-backref ><a href="#fnref:1">[1]</a>
+        <td class=fndef-content >The global Julia environment is named <code>v1.7</code> for Julia versions <code>1.7.x</code>. To access it again from the <code>fish</code> environment, or any other, simply write </p>
+<pre><code class="julia-repl hljs"><span class=hljs-metap>(fish) pkg&gt;</span> activate</code></pre>
+<p>&#40;emphasis on no <code>.</code> or other directory name following <code>activate</code>&#41;.
+    
+</table>
+ <table class=fndef  id="fndef:2">
+    <tr>
+        <td class=fndef-backref ><a href="#fnref:2">[2]</a>
+        <td class=fndef-content >Package authors <em>do</em> have to send the <code>Project.toml</code> though.
+    
+</table>
+</p>
+<div class=page-foot >
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> W. Joe Meese. Last modified: July 30, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+</div>
+</div>
+  </main> 
+  <script src="/libs/vela/metisMenu.min.js"></script>
+  <script src="/libs/vela/slideout.min.js"></script>
+  
+  
+    <script src="/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
