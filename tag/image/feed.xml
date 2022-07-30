@@ -9,14 +9,14 @@
 
   <channel>
     <title>
-      <![CDATA[  Franklin Template  ]]>
+      <![CDATA[  Julian Methods for Computational Physics  ]]>
     </title>
-    <link> https://tlienart.github.io/FranklinTemplates.jl/ </link>
+    <link> https://meese-wj.github.io/JM4CP/ </link>
     <description>
-      <![CDATA[  Example website using Franklin  ]]>
+      <![CDATA[  Assorted Notes from a Self-Taught Julia Enthusiast  ]]>
     </description>
     <atom:link
-      href="https://tlienart.github.io/FranklinTemplates.jl/feed.xml"
+      href="https://meese-wj.github.io/JM4CP/feed.xml"
       rel="self"
       type="application/rss+xml" />
 

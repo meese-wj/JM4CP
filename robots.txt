@@ -1,4 +1,4 @@
-Sitemap: https://tlienart.github.io/FranklinTemplates.jl/sitemap.xml
+Sitemap: https://meese-wj.github.io/JM4CP/sitemap.xml
 
 User-agent: *
 Disallow:
