@@ -5,7 +5,7 @@ Add here global page variables to use throughout your website.
 author = "W. Joe Meese"
 mintoclevel = 2
 
-ignore = ["node_modules/", "template_code"]
+ignore = ["node_modules/", "template_code/"]
 
 generate_rss = true
 website_title = "Julian Methods for Computational Physics"
