@@ -2,25 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
-    <loc>https://meese-wj.github.io/JM4CP/template_code/template_index/index.html</loc>
-    <lastmod>2022-08-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
     <loc>https://meese-wj.github.io/JM4CP/pages/GettingStarted/pkg/index.html</loc>
-    <lastmod>2022-08-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://meese-wj.github.io/JM4CP/template_code/menu1/index.html</loc>
-    <lastmod>2022-08-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://meese-wj.github.io/JM4CP/template_code/menu3/index.html</loc>
     <lastmod>2022-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -45,12 +27,6 @@
 </url>
 <url>
     <loc>https://meese-wj.github.io/JM4CP/pages/GettingStarted/juliabasics/index.html</loc>
-    <lastmod>2022-08-02</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-</url>
-<url>
-    <loc>https://meese-wj.github.io/JM4CP/template_code/menu2/index.html</loc>
     <lastmod>2022-08-02</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
