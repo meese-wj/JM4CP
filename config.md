@@ -29,3 +29,5 @@ Add here global latex commands to use throughout your pages.
 
 \newcommand{\note}[1]{@@note @@title ⚠ Note@@ @@content #1 @@ @@}
 
+\newcommand{\codeinfo}[1]{@@codeinfo @@title ⚠ Code Info@@ @@content #1 @@ @@}
+

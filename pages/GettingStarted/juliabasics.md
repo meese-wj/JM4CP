@@ -39,3 +39,15 @@ print(VERSION)
 Just so we're all on the same page, this tutorial was tested with the following Julia version: \textoutput{./code_jb/version}.
 
 ## Numbers and strings
+
+Starting from a physics-oriented perspective, we probably are most inclined to see how numbers are used in Julia. The parent-type of all numbers is a `Number` whose subtypes are:
+
+```julia:number_subtypes
+subtypes(Number)
+```
+
+\show{number_subtypes}
+
+\codeinfo{
+    Hi
+}
