@@ -26,3 +26,6 @@ Add here global latex commands to use throughout your pages.
     <a href="#2" target="_blank">#1</a>
     ~~~
 }
+
+\newcommand{\note}[1]{@@note @@title ⚠ Note@@ @@content #1 @@ @@}
+
