@@ -49,5 +49,13 @@ subtypes(Number)
 \show{number_subtypes}
 
 \codeinfo{
-    Hi
+    The `subtype` function is built into Julia and is used to identify hierarchical relationships between `DataType`s.
+
+    Likewise, there is a `supertype` function that can be used to traverse the hierarchy in the other way as 
+
+    ```julia:real_supertype
+    supertype(Real)
+    ```
+
+    \show{real_supertype}
 }
