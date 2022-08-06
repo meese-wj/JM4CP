@@ -1,0 +1,3 @@
+typeof.((2, 3.5)) = (Int64, Float64)
+2 + 3.5 = 5.5
+typeof(2 + 3.5) = Float64
