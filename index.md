@@ -5,6 +5,8 @@
 
 \toc
 
+waaaay
+
 ## Summary Overview
 
 Computers are a powerful tool for physics. When physics students learn how to use them to help solve problems, they may appeal to legacy examples in high-level languages like Python and MATLAB, especially if they don't have any prior programming experience. If they do, or maybe if they happen to be pretty brave, they may jump into something like Java, or low-level languages like Fortran, C, or C++.
@@ -31,7 +33,7 @@ I also will prove to you that while Julian design practices may seem crazy compa
 
 These notes and tutorials are always accessible from the navigation pane in the upper-left corner of the screen. Otherwise, one can find them here:
 
-1. [Getting Started](/pages/GettingStarted/gettingstarted)
+1. [Getting Started](/GettingStarted/gettingstarted)
 
 ## Helpful Resources
 
