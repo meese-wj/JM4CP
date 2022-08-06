@@ -31,7 +31,11 @@ I also will prove to you that while Julian design practices may seem crazy compa
 
 These notes and tutorials are always accessible from the navigation pane in the upper-left corner of the screen. Otherwise, one can find them here:
 
-1. [Getting Started](/GettingStarted/gettingstarted)
+1. [Getting Started](/pages/GettingStarted/gettingstarted)
+
+## For More Information...
+
+Check out _Helpful Resources_ by clicking this [link](/pages/helpful_resources) or by using the sidebar to the left. I plan to keep this list of resources that I find helpful updated as I go.
 
 ## Disclaimer
 
