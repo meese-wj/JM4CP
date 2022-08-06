@@ -5,9 +5,12 @@
 :root {
   --block-background: hsl(0, 0%, 94%);
   --output-background: hsl(0, 0%, 98%);
-  --small: 14px;
+  --small: 15px;
   --normal: 19px;
   --text-color: hsv(0, 0%, 20%);
+  --code-background: #f5f5f5;
+  --code-border-color: #c1d9ef;
+  --code-size: 16px;
 }
 
 /* ==================================================================
@@ -285,27 +288,20 @@ body { counter-reset: eqnum; }
     CODE & HIGHLIGHT.JS
 ================================================================== */
 
-code {
-  background-color: var(--block-background);
-  padding: 0.1em 0.2em;
-  border-radius: 2px;
-  font-size: var(--small);
+code { 
+  background-color: var(--code-background);
+  padding: 0.1em 0.3em;
+  border: 1px solid var(--code-border-color);
+  border-radius: 10px;
+  font-size: 90%;
 }
 
-/* .franklin-content code { */
-
-/* background-color: rgba(27,31,35,0.05); */
-
-/* padding: 0.1em 0.2em; */
-
-/* border-radius: 2px; */
-
-/* font-size: 90%; } */
-
 .hljs {
-  font-size: var(--small);
+  font-size: var(--code-size);
   line-height: 1.35em;
+  border: 5px solid var(--code-border-color);
   border-radius: 10px;
+  background-color: var(--code-background);
 }
 
 .hljs-meta { font-weight: bold;}
@@ -314,8 +310,10 @@ code {
 .hljs-meta.prompt_ {color: rgb(25, 179, 51);}
 
 .code-output {
-  background: var(--output-background);
-  border: 1px dashed #dbdbdb;
+  font-size: var(--code-size);
+  border: 5px dashed #dbdbdb;
+  border-radius: 10px;
+  background-color: var(--code-background);
 }
 
 /* ==================================================================
