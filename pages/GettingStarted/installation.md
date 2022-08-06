@@ -11,11 +11,8 @@ _Last Updated: August 1, 2022_
 
 ### Instructions after _JuliaCon 2022_
 
-At the annual
-~~~
-<a href="https://juliacon.org/2022/" target="_blank">Julia Convention (<em>JuliaCon</em>)</a>
-~~~
- this year, it was announced that Julia is getting a much better installation system, called [_Juliaup_](https://github.com/JuliaLang/juliaup).
+At the annual \newtablink{Julia Convention (<em>JuliaCon</em>)}{https://juliacon.org/2022/}
+this year, it was announced that Julia is getting a much better installation system, called [_Juliaup_](https://github.com/JuliaLang/juliaup).
 
 I'm personally very excited about _Juliaup_ because it will make managing and updating Julia releases much simpler (especially for Windows users). This will be great for package developers, or for people like me who want to eke out every last bit performance out of Julia as I can (for science, of course :wink:). I'll update this section when I have time to play around with it more. In the meantime, you can watch David Anthoff's _JuliaCon_ talk here:
 
@@ -25,11 +22,7 @@ I'm personally very excited about _Juliaup_ because it will make managing and up
 
 ### Instructions before _JuliaCon 2022_
 
-~~~
-<p>
-You can download and install Julia from <a href="https://julialang.org/downloads/" target="_blank">this official website</a>.
-</p>
-~~~
+You can download and install Julia from \newtablink{this official website}{https://julialang.org/downloads/}.
 
 There are a few different types of downloads that you can try out, and a brief description for them are listed below. For absolute beginners, I would recommend downloading the current stable release, or if you're _really_ nervous about the longevity of your core code, then get the LTS. The main difference between the two is that the stable release is probably faster and has more features, but the LTS version probably has fewer strange and well-hidden bugs.
 
@@ -44,11 +37,7 @@ There are a few different types of downloads that you can try out, and a brief d
 
 ## For those of us who like Linux terminals
 
-~~~
-<p>
-These instructions are for people who wish to <code>sudo</code> their way into new things. The supported Linux and FreeBSD platforms can be found <a href="https://julialang.org/downloads/#supported_platforms" target="_blank">here</a>.
-</p>
-~~~
+These instructions are for people who wish to `sudo` their way into new things. The supported Linux and FreeBSD platforms can be found \newtablink{here}{https://julialang.org/downloads/#supported_platforms}.
 
 It is possible to both build Julia from source or to obtain the generic binaries from the Julia downloads page above. The Julia team recommends using the latter steps unless you really know what you're doing. For help on Linux/FreeBSD, check out [this blog](https://dev-juliacn.github.io/downloads/platform.html).
 
