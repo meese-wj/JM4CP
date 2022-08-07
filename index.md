@@ -7,6 +7,8 @@
 
 ## Summary Overview
 
+\LastUpdated{index.md}
+
 Computers are a powerful tool for physics. When physics students learn how to use them to help solve problems, they may appeal to legacy examples in high-level languages like Python and MATLAB, especially if they don't have any prior programming experience. If they do, or maybe if they happen to be pretty brave, they may jump into something like Java, or low-level languages like Fortran, C, or C++.
 
 The higher-level languages are usually pretty attractive because they're simpler to write code in than the lower-level ones, again especially for students with little programming experience. But the tradeoff is that they are normally _slow_ (cough-cough Python), so any time the student wants to build a big project and really push the boundaries of simulated science, they fail to get the job done. We then normally hold our noses and go for the lower-level languages, become initially enamored with their speed and eventually frustrated with their complexity (looking at you, C++). Most of us who do heavy-duty simulations on supercomputing clusters then have to worry about portability of libraries, environments, and other nauseating nuances that all distract from the thing we actually wanted to study: _physics_.
