@@ -81,12 +81,15 @@ As an example, we will first talk about `Number`s in this generic way.
 Starting from a physics-oriented perspective, we probably are most inclined to see how numbers are used in Julia. The parent-type of all numbers is a `Number` whose subtypes are:
 
 ```julia:number_subtypes
+using InteractiveUtils
 subtypes(Number)
 ```
 
 \show{number_subtypes}
 
 \codeinfo{
+    The line `using InteractiveUtils` is the Julian way to load the `InteractiveUtils` module. This is only necessary to bring the `subtype` function into scope for scripts. If you're still in the `REPL`, there is no need to load it directly.
+    
     The `subtype` function is built into Julia and is used to identify hierarchical relationships between `DataType`s.
 
     Likewise, there is a `supertype` function that can be used to traverse the hierarchy in the other way as 
@@ -101,6 +104,7 @@ subtypes(Number)
 Applying this function again to each of `Number`'s subtypes, we find:
 
 ```julia:more_number_subtypes
+using InteractiveUtils # hide
 for type in subtypes(Number)
     # First get the subtypes
     subs = subtypes(type)
@@ -185,26 +189,25 @@ How did it do it? There are two conversion functions that are extremely helpful:
 
 \show{numbers_ex4}
 
-In the first case, `convert(type, value)` will convert the `value` into the `type`, provided that it's possible. In the second case, `promote(a, b)` will find out which of the two possible conversions supercedes the other for values `a` and `b`, and will return a pair/`Tuple` of values represented as that superceding type. In this case, integers always get turned into floats. Why? If we try to convert `3.5` into an `Int64`, we get an error:
+In the first case, `convert(type, value)` will convert the `value` into the `type`, provided that it's possible. In the second case, `promote(a, b)` will find out which of the two possible conversions supercedes the other for values `a` and `b`, and will return a pair/`Tuple` of values represented as that superceding type. In this case, integers always get turned into floats. Why? If we try to convert `3.5` into an `Int64` by typing it directly into the `REPL`, we get an error:
 
-```julia:numbers_ex5
-@show convert(Int64, 3.5)
+```julia-repl
+julia> convert(Int64, 3.5)
+ERROR: InexactError: Int64(3.5)
 ```
-
-\show{numbers_ex5}
 
 The reason for this error, as we know, is that a choice would have to be made about what do do with the decimal part of `3.5`. In other high-performance languages, like C and C++, we're free to do this `cast` without a warning. But in Julia it's prohibited for numerical safety reasons. Instead, we can use the `floor` function to remove the decimal part the way either of those languages would:
 
-```julia:numbers_ex6
+```julia:numbers_ex5
 @show floor(3.5)
 @show floor(Int64, 3.5)
 ```
 
-\show{numbers_ex6}
+\show{numbers_ex5}
 
 The first case shows that by default, the `floor` function returns a type that is the same as that of its argument.  For the method where the first argument is a type, the `floor` function will do the conversion we ask, because there is no decimal part any longer. Note that there are also `ceil`ing and `round` functions available:
 
-```julia:numbers_ex7
+```julia:numbers_ex6
 @show ceil(3.5)
 @show ceil(Int64, 3.5)
 @show round(3.5)
@@ -212,7 +215,7 @@ The first case shows that by default, the `floor` function returns a type that i
 @show round(Int64, 3.5)
 ```
 
-\show{numbers_ex7}
+\show{numbers_ex6}
 
 \codeinfo{
     Notice that in `round(3.5; digits = 1)` there is a semicolon `;` instead of a comma `,` separating arguments. This is Julia's convention for writing keyword arguments in functions. 
@@ -222,7 +225,7 @@ The first case shows that by default, the `floor` function returns a type that i
 
 To conclude, let's do something cool. Let's add a real number with a complex number and then take the square modulus (like something we might do for \newtablink{scattering probabilities in the Born approximation}{https://en.wikipedia.org/wiki/Born_approximation?oldformat=true#Born_approximation_to_the_Lippmann%E2%80%93Schwinger_equation}):
 
-```julia:numbers_ex8
+```julia:numbers_ex7
 z = 1.0 + 1.0im
 r = 1
 res = r + z
@@ -234,13 +237,13 @@ res = r + z
 @show abs(res)^2
 ```
 
-\show{numbers_ex8}
+\show{numbers_ex7}
 
 In the above `abs` is the absolute value function -- notice how it works for types of `ComplexF64`, the parametric type `Complex{Float64}` -- and the carat operator `^` is the exponentiation function. 
 
-Interestingly, there is some floating-point error apparent in the answer due to the order of operations between `abs` and `^`. If we switch them, the error vanishes:
+Interestingly, there is some floating-point error apparent in the answer due to the order of operations between `abs` and `^2`. If we switch them, the error vanishes:
 
-```julia:numbers_ex9
+```julia:numbers_ex8
 z = 1.0 + 1.0im
 r = 1
 res = r + z
@@ -248,9 +251,9 @@ res = r + z
 @show abs(res^2)
 ```
 
-\show{numbers_ex9}
+\show{numbers_ex8}
 
-and we get the expected result.
+and we get the expected result. As a word of warning, for those of you who don't know computers can _lie_, just like Julia did here. We know analytically that the order of operations should not matter between `abs` and `^2` (see the note below for proof), but in a computer, the situation is different due to the finite-precision of a floating-point number, _i.e._ rounding error.
 
 \codeinfo{
     You may have caught on to the `@show` macro at this point. It is a _macro_, not a _function_, which means it has the ability of writing Julia code, whereas functions do not[^3]. The `@` sign differentiates a `macro` from a `function` at a call-site within code.
@@ -264,11 +267,27 @@ and we get the expected result.
     instead. (But one can imagine, or maybe has experienced, how annoying this can get with different expressions over and over!)
 }
 
+\note{
+    Here we show that $\vert w\vert^2 = \left\vert w^2 \right\vert$. Consider any nonzero complex number $w = R{\rm e}^{i\theta}$. Then, we have
+
+    $$
+    \vert w\vert^2 = \left( \sqrt{R^2 {\rm e}^{i\theta}{\rm e}^{-i\theta} } \right)^2 = R^2,
+    $$
+
+    and
+
+    $$
+    \left\vert w^2 \right\vert = \left\vert R^2 {\rm e}^{2i\theta} \right\vert = \sqrt{ R^4 {\rm e}^{2i\theta}{\rm e}^{-2i\theta} } = R^2.
+    $$
+
+    (Of course, this $\vert w\vert^2 = \left\vert w^2 \right\vert$ when $w = 0$, too, but in this case we can't define the phase $\theta$, so the proof above fails. :wink:) 
+}
+
 ## Conclusions
 
-In this tutorial, we took the time to understand Julia from its very basics, with talking how functions are primary and Julia distinguishes function `methods` by argument `Type`s. 
+In this tutorial, we took the time to understand Julia from its very basics, with talking how functions are primary and Julia distinguishes function `methods` by argument `Type`s.
 
-We saw how this conceptual framework is very natural and commensurate to how we, as people, normally associate functions and arguments. 
+We saw how this conceptual framework is very natural and commensurate to how we, as people, normally associate functions and arguments.
 
 We then saw how it is put into practice with the `Number` `abstract` type, and then saw an example of the tree-like structure that follows naturally from type relationships in Julia.
 
