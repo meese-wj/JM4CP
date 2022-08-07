@@ -253,7 +253,7 @@ res = r + z
 
 \codeshow{numbers_ex8}
 
-and we get the expected result. As a word of warning, for those of you who don't know computers can _lie_, just like Julia did here. We know analytically that the order of operations should not matter between `abs` and `^2` (see the note below for proof), but in a computer, the situation is different due to the finite-precision of a floating-point number, _i.e._ rounding error.
+and we get the expected result. As a word of warning, for those of you who don't know computers can _lie_, just like Julia did here. We know analytically that the order of operations should not matter between `abs` and `^2` (see the [note below](#abs2proof) for proof), but in a computer, the situation is different due to the finite-precision of a floating-point number, _i.e._ rounding error.
 
 \codeinfo{
     You may have caught on to the `@show` macro at this point. It is a _macro_, not a _function_, which means it has the ability of writing Julia code, whereas functions do not[^3]. The `@` sign differentiates a `macro` from a `function` at a call-site within code.
@@ -268,6 +268,7 @@ and we get the expected result. As a word of warning, for those of you who don't
 }
 
 \note{
+    \label{abs2proof}
     Here we show that $\vert w\vert^2 = \left\vert w^2 \right\vert$. Consider any nonzero complex number $w = R{\rm e}^{i\theta}$. Then, we have
 
     $$
