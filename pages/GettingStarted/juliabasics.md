@@ -11,7 +11,7 @@ In this tutorial, we'll go over a few Julia basics. We will only need the Julia 
 \note{
     On Windows, you can hit the `Windows` button on your keyboard to open the start menu and type `Julia` to find the executable. Alternatively, one can open the terminal and simply type `julia` on `*`nix systems, or `julia.exe` for Windows, into the command line.
 
-    Either method will open an interactive command-line interface called the Julia `REPL` which stands for w`R`ite-`E`xecute-`P`rint-`L`oop.
+    Either method will open an interactive command-line interface called the Julia `REPL` which stands for `R`ead-`E`valuate-`P`rint-`L`oop.
 }
 
 The code that we will need to execute in the `REPL` will be outlined in code blocks with _solid_ borders like so:
