@@ -309,7 +309,11 @@ code {
 .hljs-meta.shell_ {color: crimson;}
 .hljs-meta.prompt_ {color: rgb(25, 179, 51);}
 
-.code-output {
+/* This next block allows for a different code-output block as per:
+https://github.com/tlienart/Franklin.jl/blob/58e242cfe0372175496ad424a3e5b79ecec9c554/demos/_css/extras.css#L1-L4 
+and in coordination with a new @@code-output @@ Franklin div.
+*/
+.code-output code.plaintext.hljs {
   font-size: var(--code-size);
   border: 5px dotted #9cdaa7;
   border-radius: 10px;

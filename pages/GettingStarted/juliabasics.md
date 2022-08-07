@@ -22,7 +22,7 @@ println("Hello World")
 
 and the output of these code blocks will be shown in code blocks with _dashed_ borders as:
 
-\output{./code_jb/helloworld}
+\codeshow{./code_jb/helloworld}
 
 ## What's in this tutorial?
 
@@ -40,7 +40,7 @@ As is usual, feel free to skip around, but fair warning this tutorial is covered
 print(VERSION)
 ```
 
-\output{./code_jb/version}
+\codeshow{./code_jb/version}
 
 Just so we're all on the same page, this tutorial was tested with the following Julia version: \textoutput{./code_jb/version}.
 
@@ -85,7 +85,7 @@ using InteractiveUtils
 subtypes(Number)
 ```
 
-\show{number_subtypes}
+\codeshow{number_subtypes}
 
 \codeinfo{
     The line `using InteractiveUtils` is the Julian way to load the `InteractiveUtils` module. This is only necessary to bring the `subtype` function into scope for scripts. If you're still in the `REPL`, there is no need to load it directly.
@@ -98,7 +98,7 @@ subtypes(Number)
     supertype(Real)
     ```
 
-    \show{real_supertype}
+    \codeshow{real_supertype}
 }
 
 Applying this function again to each of `Number`'s subtypes, we find:
@@ -117,7 +117,7 @@ for type in subtypes(Number)
 end
 ```
 
-\show{more_number_subtypes}
+\codeshow{more_number_subtypes}
 
 *Wait! I thought we were looking at numbers, but instead we're already at for-loops, string interpolation, and printing!*
 
@@ -152,7 +152,7 @@ First, let's check the type of `Number` that `1` is.
 typeof(1)
 ```
 
-\show{numbers_ex1}
+\codeshow{numbers_ex1}
 
 On different systems, this type may change from `Int64` to `Int32` (though I doubt it for modern hardware). Both of these types are _concrete_, as opposed to the `Integer` type shown above which is `abstract`. The `32` or `64` refers to the number of bits used to store each integer, implying that it has a definite machine-code implementation, _unlike_ the abstract `Integer`.
 
@@ -164,7 +164,7 @@ So since we spent all that time discussing addition, let's add integers:
 @show typeof(2 + 3)
 ```
 
-\show{numbers_ex2}
+\codeshow{numbers_ex2}
 
 So we see that by default, `2` and `3` are also `Int64`, and their sum `5` is too.
 
@@ -176,7 +176,7 @@ How about the other example? Adding `2` and `3.5`?
 @show typeof(2 + 3.5)
 ```
 
-\show{numbers_ex3}
+\codeshow{numbers_ex3}
 
 What happened here? It looks like `typeof(3.5) == Float64`, then the sum `5.5` is also of that type. So what happened was Julia was smart enough to `convert` the `Int64` into a `Float64` and then add the two `Float64` values; just like we did above by hand!
 
@@ -187,7 +187,7 @@ How did it do it? There are two conversion functions that are extremely helpful:
 @show promote(2, 3.5)
 ```
 
-\show{numbers_ex4}
+\codeshow{numbers_ex4}
 
 In the first case, `convert(type, value)` will convert the `value` into the `type`, provided that it's possible. In the second case, `promote(a, b)` will find out which of the two possible conversions supercedes the other for values `a` and `b`, and will return a pair/`Tuple` of values represented as that superceding type. In this case, integers always get turned into floats. Why? If we try to convert `3.5` into an `Int64` by typing it directly into the `REPL`, we get an error:
 
@@ -203,7 +203,7 @@ The reason for this error, as we know, is that a choice would have to be made ab
 @show floor(Int64, 3.5)
 ```
 
-\show{numbers_ex5}
+\codeshow{numbers_ex5}
 
 The first case shows that by default, the `floor` function returns a type that is the same as that of its argument.  For the method where the first argument is a type, the `floor` function will do the conversion we ask, because there is no decimal part any longer. Note that there are also `ceil`ing and `round` functions available:
 
@@ -215,7 +215,7 @@ The first case shows that by default, the `floor` function returns a type that i
 @show round(Int64, 3.5)
 ```
 
-\show{numbers_ex6}
+\codeshow{numbers_ex6}
 
 \codeinfo{
     Notice that in `round(3.5; digits = 1)` there is a semicolon `;` instead of a comma `,` separating arguments. This is Julia's convention for writing keyword arguments in functions. 
@@ -237,7 +237,7 @@ res = r + z
 @show abs(res)^2
 ```
 
-\show{numbers_ex7}
+\codeshow{numbers_ex7}
 
 In the above `abs` is the absolute value function -- notice how it works for types of `ComplexF64`, the parametric type `Complex{Float64}` -- and the carat operator `^` is the exponentiation function. 
 
@@ -251,7 +251,7 @@ res = r + z
 @show abs(res^2)
 ```
 
-\show{numbers_ex8}
+\codeshow{numbers_ex8}
 
 and we get the expected result. As a word of warning, for those of you who don't know computers can _lie_, just like Julia did here. We know analytically that the order of operations should not matter between `abs` and `^2` (see the note below for proof), but in a computer, the situation is different due to the finite-precision of a floating-point number, _i.e._ rounding error.
 
