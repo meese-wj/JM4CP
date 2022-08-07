@@ -1,1 +1,8 @@
-UndefVarError: subtypes not defined
+subtypes(Complex):
+
+subtypes(Real):
+|--> AbstractFloat
+|--> AbstractIrrational
+|--> Integer
+|--> Rational
+

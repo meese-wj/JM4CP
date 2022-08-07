@@ -3,8 +3,4 @@ z = 1.0 + 1.0im
 r = 1
 res = r + z
 
-@show z
-@show r
-@show res
-@show typeof(res)
-@show abs(res)^2
+@show abs(res^2)
