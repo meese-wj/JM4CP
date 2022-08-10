@@ -1,8 +1,8 @@
-@def title = "Julia Basics"
+@def title = "Julia Basics I"
 @def hascode = true
 @def tags = ["basics", "syntax", "usage"]
 
-# Basic Julia Syntax and Usage
+# What's Julia all about?
 
 _Last Updated: August 6, 2022_
 
