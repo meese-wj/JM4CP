@@ -3,7 +3,9 @@
 
 # The Programmatic Minimum
 
-_Last Updated: August 10, 2022_
+~~~
+<em>Last Updated: {{fill fd_mtime}}</em>
+~~~
 
 ## What's in this tutorial?
 
@@ -15,7 +17,7 @@ In this section, we'll discuss the basics of how to get Julia code up and runnin
 
 ### Functions & Methods
 
-We start with the primary datatype in Julia: function methods. As described in the [previous tutorial](/pages/GettingStarted/juliabasics_part1.md), Julia revolves around `function`s which are **abstract**, and `methods` which are **concrete**. In other words, whenever one implements a particular `function` for a **specific** set of argument `Type`s, then it is referred to as a `method` of that `function`.
+We start with the primary datatype in Julia: function methods. As described in the [previous tutorial](/pages/GettingStarted/juliabasics_part1), Julia revolves around `function`s which are **abstract**, and `methods` which are **concrete**. In other words, whenever one implements a particular `function` for a **specific** set of argument `Type`s, then it is referred to as a `method` of that `function`.
 
 Method definitions are beautifully simple in Julia. For example, they can be written as
 
@@ -158,6 +160,8 @@ I personally like to keep the `return` keyword there for two reasons. First, som
 }
 
 ### Variables
+
+To be continued...
 
 ### Scopes
 

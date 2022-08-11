@@ -4,7 +4,9 @@
 
 # What's Julia all about?
 
-_Last Updated: August 6, 2022_
+~~~
+<em>Last Updated: {{fill fd_mtime}}</em>
+~~~
 
 In this tutorial, we'll go over a few Julia basics. We will only need the Julia `REPL` for this tutorial, which you can open simply by starting Julia.
 

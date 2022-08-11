@@ -4,7 +4,9 @@
 
 # `Pkg`: Julia's Built-in Package Manager
 
-_Last Updated: July 30, 2022_
+~~~
+<em>Last Updated: {{fill fd_mtime}}</em>
+~~~
 
 In this page, we will quickly and easily create a new project environment in Julia using its own package manger, named `Pkg`.
 

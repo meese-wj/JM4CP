@@ -3,7 +3,9 @@
 
 # How can I get Julia on my machine?
 
-_Last Updated: August 1, 2022_
+~~~
+<em>Last Updated: {{fill fd_mtime}}</em>
+~~~
 
 \toc
 

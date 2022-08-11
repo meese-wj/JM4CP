@@ -44,12 +44,3 @@ Add here global latex commands to use throughout your pages.
 \newcommand{\codeinfo}[1]{@@codeinfo @@title ⚠ Code Info@@ @@content #1 @@ @@}
 
 \newcommand{\codeshow}[1]{@@code-output \show{#1} @@}
-
-\newcommand{\LastUpdated}[1]{
-    ```julia:lu
-    #hideall
-    LastUpdated("#1")
-    ```
-    _Last Updated:_ \textoutput{lu}
-}
-
