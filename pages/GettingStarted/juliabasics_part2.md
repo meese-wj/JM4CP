@@ -19,7 +19,7 @@ We start with the primary datatype in Julia: function methods. As described in t
 
 Method definitions are beautifully simple in Julia. For example, they can be written as
 
-```julia:ex_line
+```julia:./ex_line
 line(x, m, b) = m * x + b 
 ```
 
@@ -27,19 +27,19 @@ for a `function` `line` which computes the value of a line given some arguments.
 
 In the `REPL`, go ahead and copy-and-paste `line` into the command line and hit `Enter`. You should see the following output:
 
-\codeshow{ex_line}
+\codeshow{./ex_line}
 
 Here we see that `line` has one method. We can use that one method to do calculations, for example as
 
-```julia:ex_line
+```julia:./ex_line
 @show line(1, 2, 3)
 ```
 
-\codeshow{ex_line}
+\codeshow{./ex_line}
 
 Now, let's add `::Vector` to the `x` argument and change up the definition a bit. (The `::` flag is how one can specify type information in Julia.)
 
-```julia:ex_line
+```julia:./ex_line
 line(x::Vector, m, b) = m .* x .+ b
 ```
 
@@ -47,22 +47,22 @@ Here, the `.` in front of the `*` and `+` operators _vectorize_ your code and si
 
 Now, let's check `methods` again to verify that our `line` was overwritten:
 
-```julia:ex_line
+```julia:./ex_line
 methods(line)
 ```
 
-\codeshow{ex_line}
+\codeshow{./ex_line}
 
 As you can see, our original `line` method was not overwritten, but _overloaded_. Now this `line` has _two_ distinct methods, one where the `x` argument is a `Vector`, and one where it is not. By default, if no type information is supplied to the arguments, they are _inferred_ by Julia to be the type `Any` which is the supertype of all other types. So it literally could represent _anything_. 
 
 So which method will be called in the following cases?
 
-```julia:ex_line
+```julia:./ex_line
 @show line(1, 2, 3)
 @show line([1, 2, 3], 2, 3)
 ```
 
-\codeshow{ex_line}
+\codeshow{./ex_line}
 
 (As will be talked about [later in this tutorial](#arrays-matrices-and-vectors), one can create a column in Julia `Vector` of type `Int` by writing `[1, 2, 3]`.) Notice how the first example returns the same result from before, whereas the second returns the column vector resulting from our `line` method with the `Vector` first argument.
 
@@ -70,7 +70,7 @@ What does this mean? It means that Julia is smart enough to call the appropriate
 
 But, with great power comes great responsibility: sometimes we can accidentally creat what are called _method ambiguities_. For example, suppose we want the slopes `m` always to be of type `Float64`. We can do this by writing
 
-```julia:ex_line2
+```julia:./ex_line2
 line(x, m::Float64, b) = m * x + b # hide
 line(x::Vector, m, b) = m .* x .+ b # hide
 line(x, m::Float64, b) = m .* x .+ b
@@ -78,11 +78,11 @@ line(x, m::Float64, b) = m .* x .+ b
 
 Then, we call `methods` again and see
 
-```julia:ex_line2
+```julia:./ex_line2
 methods(line)
 ```
 
-\codeshow{ex_line2}
+\codeshow{./ex_line2}
 
 meaning that we have successfully added a third method for `line`. Or have we? Because if we call `line([1, 2, 3], 2.0, 3)`, we now see an error:
 
@@ -100,7 +100,7 @@ Possible fix, define
 
 So all we would need to do is define, yet another, method to tell Julia specifically what we need it to do:
 
-```julia:ex_line3
+```julia:./ex_line3
 line(x, m::Float64, b) = m * x + b # hide
 line(x::Vector, m, b) = m .* x .+ b # hide
 line(x, m::Float64, b) = m .* x .+ b # hide
@@ -109,15 +109,15 @@ line(x::Vector, m::Float64, b) = m .* x .+ b
 methods(line)
 ```
 
-\codeshow{ex_line3}
+\codeshow{./ex_line3}
 
 giving us four methods in total. Now by calling that last line that threw an error, we see that everything is fixed and we get the correct result.
 
-```julia:ex_line3
+```julia:./ex_line3
 @show line([1, 2, 3], 2.0, 3)
 ```
 
-\codeshow{ex_line3}
+\codeshow{./ex_line3}
 
 That about wraps things up for functions. The last thing I want to point out is that there are actually a couple of more ways to create new functions. The first uses a `begin ... end` block allowing one to have multiple lines, like so
 
