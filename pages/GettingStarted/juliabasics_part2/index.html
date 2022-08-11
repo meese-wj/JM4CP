@@ -1,0 +1,99 @@
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/JM4CP/libs/highlight/styles/github.min.css"> <link href="/JM4CP/css/franklin.css" rel=stylesheet > <link href="/JM4CP/css/vela.css" rel=stylesheet > <script src="/JM4CP/libs/vela/jquery.min.js"></script> <link rel=icon  href="/JM4CP/assets/favicon.png"> <title>Julian Methods for Computational Physics</title> <div class="main-nav slideout-menu slideout-menu-left" id=menu > <div class=flex-container > <span class=sidebar-brand > <h3 style='font-size: 30px'><a href="/JM4CP/">JM4CP</a></h3> </span> </div> <nav class=sidebar-nav > <ul class=metismenu  id=metismenu  > <li><a href="/JM4CP/index.html">Home</a> <li><a href="" class=has-arrow >Getting Started</a> <ul> <li><a href="/JM4CP/pages/GettingStarted/gettingstarted">Tutorial Home</a> <li><a href="/JM4CP/pages/GettingStarted/installation">Installation Instructions</a> <li><a href="/JM4CP/pages/GettingStarted/pkg">using Pkg</a> <li><a href="/JM4CP/pages/GettingStarted/juliabasics_part1">Julia Basics I</a> <li><a href="/JM4CP/pages/GettingStarted/juliabasics_part2">Julia Basics II</a> </ul> <li><a href="/JM4CP/pages/helpful_resources">Helpful Resources</a> </ul> </nav> </div> <main id=panel  class="slidout-panel slideout-panel-left"> <div class="toggle-button hamburger hamburger--spin"> <div class=hamburger-box > <div class=hamburger-inner ></div> </div> </div> <h1 class="page title">Julia Basics II</h1> <hr> <div class=franklin-content ><h1 id=the_programmatic_minimum ><a href="#the_programmatic_minimum" class=header-anchor >The Programmatic Minimum</a></h1> <em>Last Updated: August 11, 2022</em> <h2 id=whats_in_this_tutorial ><a href="#whats_in_this_tutorial" class=header-anchor >What&#39;s in this tutorial?</a></h2> <div class=franklin-toc ><ol><li><a href="#whats_in_this_tutorial">What&#39;s in this tutorial?</a><li><a href="#basic_build_blocks">Basic build blocks</a><ol><li><a href="#functions_methods">Functions &amp; Methods</a><li><a href="#variables">Variables</a><li><a href="#scopes">Scopes</a></ol><li><a href="#helpful_built-in_types">Helpful built-in types</a><ol><li><a href="#strings">Strings</a><li><a href="#arrays_matrices_and_vectors">Arrays, Matrices, and Vectors</a><li><a href="#tuples">Tuples</a><li><a href="#named-tuples_and_dictionaries">Named-Tuples and Dictionaries</a></ol><li><a href="#user-defined_types_structs">User-defined types: structs</a><ol><li><a href="#mutability">Mutability</a></ol><li><a href="#built-in_macros">Built-in macros</a><li><a href="#is_julia_a_statically-typed_language">Is Julia a statically-typed language?</a></ol></div> <h2 id=basic_build_blocks ><a href="#basic_build_blocks" class=header-anchor >Basic build blocks</a></h2> <p>In this section, we&#39;ll discuss the basics of how to get Julia code up and running.</p> <h3 id=functions_methods ><a href="#functions_methods" class=header-anchor >Functions &amp; Methods</a></h3> <p>We start with the primary datatype in Julia: function methods. As described in the <a href="/JM4CP/pages/GettingStarted/juliabasics_part1">previous tutorial</a>, Julia revolves around <code>function</code>s which are <strong>abstract</strong>, and <code>methods</code> which are <strong>concrete</strong>. In other words, whenever one implements a particular <code>function</code> for a <strong>specific</strong> set of argument <code>Type</code>s, then it is referred to as a <code>method</code> of that <code>function</code>.</p> <p>Method definitions are beautifully simple in Julia. For example, they can be written as</p> <pre><code class="julia hljs">line(x, m, b) = m * x + b</code></pre>
+<p>for a <code>function</code> <code>line</code> which computes the value of a line given some arguments. In this <code>method</code> definition, <code>line</code> takes in the arguments <code>&#40;x, m, b&#41;</code>.</p>
+<p>In the <code>REPL</code>, go ahead and copy-and-paste <code>line</code> into the command line and hit <code>Enter</code>. You should see the following output:</p>
+<div class=code-output ><pre><code class="plaintext hljs">line (generic function with 1 method)</code></pre></div>
+<p>Here we see that <code>line</code> has one method. We can use that one method to do calculations, for example as</p>
+<pre><code class="julia hljs"><span class=hljs-meta >@show</span> line(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>)</code></pre>
+<div class=code-output ><pre><code class="plaintext hljs">line(1, 2, 3) = 5
+</code></pre></div>
+<p>Now, let&#39;s add <code>::Vector</code> to the <code>x</code> argument and change up the definition a bit. &#40;The <code>::</code> flag is how one can specify type information in Julia.&#41;</p>
+<pre><code class="julia hljs">line(x::<span class=hljs-built_in >Vector</span>, m, b) = m .* x .+ b</code></pre>
+<p>Here, the <code>.</code> in front of the <code>*</code> and <code>&#43;</code> operators <em>vectorize</em> your code and simply mean &quot;apply this operation to each element&quot; and so it inherently implies the use of a loop over all elements of <code>x</code> for the multiplication first, and then again over all elements of the <code>Vector</code> <code>m .* x</code> for the addition. All it cost us is a replacement of <code>*</code> and <code>&#43;</code> by <code>.*</code> and <code>.&#43;</code>. Not too shabby&#33; </p>
+<p>Now, let&#39;s check <code>methods</code> again to verify that our <code>line</code> was overwritten:</p>
+<pre><code class="julia hljs">methods(line)</code></pre>
+<div class=code-output ><pre><code class="plaintext hljs"># 2 methods for generic function &quot;line&quot;:
+[1] line(x::Vector, m, b) in Main.FD_SANDBOX_2950733204805230011 at none:1
+[2] line(x, m, b) in Main.FD_SANDBOX_2950733204805230011 at none:1</code></pre></div>
+<p>As you can see, our original <code>line</code> method was not overwritten, but <em>overloaded</em>. Now this <code>line</code> has <em>two</em> distinct methods, one where the <code>x</code> argument is a <code>Vector</code>, and one where it is not. By default, if no type information is supplied to the arguments, they are <em>inferred</em> by Julia to be the type <code>Any</code> which is the supertype of all other types. So it literally could represent <em>anything</em>. </p>
+<p>So which method will be called in the following cases?</p>
+<pre><code class="julia hljs"><span class=hljs-meta >@show</span> line(<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>)
+<span class=hljs-meta >@show</span> line([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>], <span class=hljs-number >2</span>, <span class=hljs-number >3</span>)</code></pre>
+<div class=code-output ><pre><code class="plaintext hljs">line(1, 2, 3) = 5
+line([1, 2, 3], 2, 3) = [5, 7, 9]
+</code></pre></div>
+<p>&#40;As will be talked about <a href="#arrays-matrices-and-vectors">later in this tutorial</a>, one can create a column in Julia <code>Vector</code> of type <code>Int</code> by writing <code>&#91;1, 2, 3&#93;</code>.&#41; Notice how the first example returns the same result from before, whereas the second returns the column vector resulting from our <code>line</code> method with the <code>Vector</code> first argument.</p>
+<p>What does this mean? It means that Julia is smart enough to call the appropriate method of a <code>function</code> for its supplied argument types. Furthermore, it shows that because methods with more specific argument types are preferred over those with more general argument types. Otherwise, the <code>m * x &#43; b</code> method <em>should</em> have been called &#40;and subsequently then thrown an error&#41; for our <code>Vector</code> argument rather than the correct <code>m .* x .&#43; b</code> one. Indeed, the ordered set of most specific type arguments of a method uniquely identify it. Therefore, methods will only be <strong>overwritten</strong> if <strong>all</strong> arguments are specified exactly the same way. Otherwise, Julia makes a new method for the new argument types, and then use its own 
+    <a href=" https://en.wikipedia.org/wiki/Multiple_dispatch?oldformat=true" target=_blank > multiple dispatch</a>
+     system to choose the right one. Behold the power&#33;</p>
+<p>But, with great power comes great responsibility: sometimes we can accidentally creat what are called <em>method ambiguities</em>. For example, suppose we want the slopes <code>m</code> always to be of type <code>Float64</code>. We can do this by writing</p>
+<pre><code class="julia hljs">line(x, m::<span class=hljs-built_in >Float64</span>, b) = m .* x .+ b</code></pre>
+<p>Then, we call <code>methods</code> again and see</p>
+<pre><code class="julia hljs">methods(line)</code></pre>
+<div class=code-output ><pre><code class="plaintext hljs"># 3 methods for generic function &quot;line&quot;:
+[1] line(x::Vector, m, b) in Main.FD_SANDBOX_2950733204805230011 at none:1
+[2] line(x, m::Float64, b) in Main.FD_SANDBOX_2950733204805230011 at none:1
+[3] line(x, m, b) in Main.FD_SANDBOX_2950733204805230011 at none:1</code></pre></div>
+<p>meaning that we have successfully added a third method for <code>line</code>. Or have we? Because if we call <code>line&#40;&#91;1, 2, 3&#93;, 2.0, 3&#41;</code>, we now see an error:</p>
+<pre><code class="julia-repl hljs"><span class="hljs-meta prompt_">julia&gt;</span><span class=language-julia > line([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>], <span class=hljs-number >2.0</span>, <span class=hljs-number >3</span>)
+</span>ERROR: MethodError: line(::Vector{Int64}, ::Float64, ::Int64) is ambiguous.</code></pre>
+<p>As the rest of the error message shows, this is because Julia isn&#39;t sure whether to call the method that specializes the <code>x</code> argument from <code>Any</code> to <code>Vector</code>, or to call the method that specializes the <code>m</code> argument from <code>Any</code> to <code>Float64</code>. As Julia should suggest:</p>
+<pre><code class="julia-repl hljs">Possible fix, define
+  line(::Vector, ::Float64, ::Any)</code></pre>
+<p>So all we would need to do is define, yet another, method to tell Julia specifically what we need it to do:</p>
+<pre><code class="julia hljs">line(x::<span class=hljs-built_in >Vector</span>, m::<span class=hljs-built_in >Float64</span>, b) = m .* x .+ b
+
+methods(line)</code></pre>
+<div class=code-output ><pre><code class="plaintext hljs"># 4 methods for generic function &quot;line&quot;:
+[1] line(x::Vector, m::Float64, b) in Main.FD_SANDBOX_2950733204805230011 at none:1
+[2] line(x::Vector, m, b) in Main.FD_SANDBOX_2950733204805230011 at none:1
+[3] line(x, m::Float64, b) in Main.FD_SANDBOX_2950733204805230011 at none:1
+[4] line(x, m, b) in Main.FD_SANDBOX_2950733204805230011 at none:1</code></pre></div>
+<p>giving us four methods in total. Now by calling that last line that threw an error, we see that everything is fixed and we get the correct result.</p>
+<pre><code class="julia hljs"><span class=hljs-meta >@show</span> line([<span class=hljs-number >1</span>, <span class=hljs-number >2</span>, <span class=hljs-number >3</span>], <span class=hljs-number >2.0</span>, <span class=hljs-number >3</span>)</code></pre>
+<div class=code-output ><pre><code class="plaintext hljs">line([1, 2, 3], 2.0, 3) = [5.0, 7.0, 9.0]
+</code></pre></div>
+<p>That about wraps things up for functions. The last thing I want to point out is that there are actually a couple of more ways to create new functions. The first uses a <code>begin ... end</code> block allowing one to have multiple lines, like so</p>
+<pre><code class="julia hljs">line(x, m, b) = <span class=hljs-keyword >begin</span>
+    result = m * x
+    result += b
+    <span class=hljs-keyword >return</span> result
+<span class=hljs-keyword >end</span></code></pre>
+<p>or one can use the <code>function ... end</code> block which is the more normal way to have multiple-line functions in Julia:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> line(x, m, b)
+    result = m * x
+    result += b
+    <span class=hljs-keyword >return</span> result
+<span class=hljs-keyword >end</span></code></pre>
+<p>With either of these two methods &#40;😉&#41;, one can then have arbitrarily many lines in functions as one then pleases. But, as is true for all programming, it is considered good practice to have very small functions that all do very specific things, then then to stitch them together to make more complicated code.</p>
+<div class=codeinfo ><div class=title >⚠ Code Info</div>
+<div class=content ><p>Notice that in these last multi-line function method definitions, that we used the keyword <code>return</code>. This is not necessary for Julia, unlike languages like Python and C&#43;&#43;. &#40;In Python and C&#43;&#43;, a lack of a return keyword implies the function returns <code>nothing</code> or is <code>void</code>, respectively.&#41;</p>
+<p>We could have just left the final lines as <code>result &#43;&#61; b</code>, because this on its own returns <code>result</code>. Generally, Julia will return the output from the last line of any function, and so sometimes people would write the last example as:</p>
+<pre><code class="julia hljs"><span class=hljs-keyword >function</span> line(x, m, b)
+    result = m * x
+    result += b
+<span class=hljs-keyword >end</span></code></pre>
+<p>I personally like to keep the <code>return</code> keyword there for two reasons. First, sometimes it isn&#39;t possible to write functions without them, as is the case with branching functions, <em>etc</em>. Secondly, I like verbose, readable code. I don&#39;t like having to out-smart the code. I prefer when it tells me <em>exactly</em> what it is trying to do.</p></div></div>
+<h3 id=variables ><a href="#variables" class=header-anchor >Variables</a></h3>
+<p>To be continued...</p>
+<h3 id=scopes ><a href="#scopes" class=header-anchor >Scopes</a></h3>
+<h2 id=helpful_built-in_types ><a href="#helpful_built-in_types" class=header-anchor >Helpful built-in types</a></h2>
+<h3 id=strings ><a href="#strings" class=header-anchor >Strings</a></h3>
+<h3 id=arrays_matrices_and_vectors ><a href="#arrays_matrices_and_vectors" class=header-anchor >Arrays, Matrices, and Vectors</a></h3>
+<h3 id=tuples ><a href="#tuples" class=header-anchor >Tuples</a></h3>
+<h3 id=named-tuples_and_dictionaries ><a href="#named-tuples_and_dictionaries" class=header-anchor >Named-Tuples and Dictionaries</a></h3>
+<h2 id=user-defined_types_structs ><a href="#user-defined_types_structs" class=header-anchor >User-defined types: structs</a></h2>
+<h3 id=mutability ><a href="#mutability" class=header-anchor >Mutability</a></h3>
+<h2 id=built-in_macros ><a href="#built-in_macros" class=header-anchor >Built-in macros</a></h2>
+<h2 id=is_julia_a_statically-typed_language ><a href="#is_julia_a_statically-typed_language" class=header-anchor >Is Julia a statically-typed language?</a></h2>
+<div class=page-foot >
+    <a href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> W. Joe Meese. Last modified: August 11, 2022.
+    Website built with <a href="https://github.com/tlienart/Franklin.jl">Franklin.jl</a> and the <a href="https://julialang.org">Julia programming language</a>.
+</div>
+</div>
+  </main> 
+  <script src="/JM4CP/libs/vela/metisMenu.min.js"></script>
+  <script src="/JM4CP/libs/vela/slideout.min.js"></script>
+  
+  
+    <script src="/JM4CP/libs/highlight/highlight.min.js"></script>
+<script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
