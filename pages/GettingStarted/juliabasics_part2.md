@@ -66,7 +66,7 @@ So which method will be called in the following cases?
 
 \codeshow{./ex_line}
 
-(As will be talked about [later in this tutorial](#arrays-matrices-and-vectors), one can create a column in Julia `Vector` of type `Int` by writing `[1, 2, 3]`.) Notice how the first example returns the same result from before, whereas the second returns the column vector resulting from our `line` method with the `Vector` first argument.
+(As will be talked about [later in this tutorial](juliabasics_part2#arrays-matrices-and-vectors), one can create a column in Julia `Vector` of type `Int` by writing `[1, 2, 3]`.) Notice how the first example returns the same result from before, whereas the second returns the column vector resulting from our `line` method with the `Vector` first argument.
 
 What does this mean? It means that Julia is smart enough to call the appropriate method of a `function` for its supplied argument types. Furthermore, it shows that because methods with more specific argument types are preferred over those with more general argument types. Otherwise, the `m * x + b` method _should_ have been called (and subsequently then thrown an error) for our `Vector` argument rather than the correct `m .* x .+ b` one. Indeed, the ordered set of most specific type arguments of a method uniquely identify it. Therefore, methods will only be **overwritten** if **all** arguments are specified exactly the same way. Otherwise, Julia makes a new method for the new argument types, and then use its own \newtablink{multiple dispatch}{https://en.wikipedia.org/wiki/Multiple_dispatch?oldformat=true} system to choose the right one. Behold the power!
 
