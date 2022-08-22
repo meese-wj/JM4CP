@@ -24,7 +24,7 @@ These two reasons actually make collaborating with Julia projects very simple an
 To access the `Pkg` from the Julia `REPL`, simply hit `]` and see that the `julia>` heading change to `pkg>`. Now, to create a new project environment, type `activate .` like so:
 
 ```julia-repl
-(v1.7) pkg> activate .
+(v1.8) pkg> activate .
 ```
 
 This will change the `REPL` heading again from `pkg>` to `(fish) pkg>`, given a directory name `fish`. So now we should be looking at 
@@ -68,7 +68,7 @@ This file is used to uniquely specify a new project environment and list all of 
 This file uniquely delineates not only the your new project environment's dependencies, but also all of the dependencies' dependencies, and so on. The power of this file comes from another `Pkg` command:
 
 ```julia-repl
-(v1.7) pkg> instantiate .
+(v1.8) pkg> instantiate .
 ```
 
 which will not only pull the dependencies listed in the `Project.toml`, but also _all_ of the specific package versions of every package listed in the `Manifest.toml`. This file and `instantiate` command is what allows for portability and reproducibility of Julia projects because it allows _anybody_ to completely recreate the specific environment configuration that you used to run your code and get your specific results. 
@@ -100,7 +100,7 @@ I've tip-toed around some other important details to avoid overwhelming you with
 
 ## Footnotes
 
-[^1]: The global Julia environment is named `v1.7` for Julia versions `1.7.x`. To access it again from the `fish` environment, or any other, simply write ```julia-repl
+[^1]: The global Julia environment is named `v1.8` for Julia versions `1.8.x`. To access it again from the `fish` environment, or any other, simply write ```julia-repl
 (fish) pkg> activate
 ``` (emphasis on no `.` or other directory name following `activate`).
 
