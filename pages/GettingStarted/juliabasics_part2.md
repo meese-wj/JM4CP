@@ -3,11 +3,9 @@
 
 # The Programmatic Minimum
 
-~~~
-<em>Last Updated: {{fill fd_mtime}}</em>
-~~~
-
 ## What's in this tutorial?
+
+\FirstPostedLastUpdated{August 9, 2022}
 
 \toc
 

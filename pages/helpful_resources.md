@@ -2,9 +2,7 @@
 
 # More information for curious readers
 
-~~~
-<em>Last Updated: {{fill fd_mtime}}</em>
-~~~
+\FirstPostedLastUpdated{August 5, 2022}
 
 Like most physics people I know, whenever I needed to learn a new language, I taught myself how to use it. The same is true for me and Julia.
 

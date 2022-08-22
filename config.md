@@ -44,3 +44,15 @@ Add here global latex commands to use throughout your pages.
 \newcommand{\codeinfo}[1]{@@codeinfo @@title ⚠ Code Info@@ @@content #1 @@ @@}
 
 \newcommand{\codeshow}[1]{@@code-output \show{#1} @@}
+
+\newcommand{\FirstPostedLastUpdated}[1]{
+~~~
+<p>
+<em><strong>First Posted:</strong> #1</em>
+</p>
+<p>
+<em><strong>Last Updated:</strong> {{fill fd_mtime}}</em>
+</p>
+~~~
+---
+}

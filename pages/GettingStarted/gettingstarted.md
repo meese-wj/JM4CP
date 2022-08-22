@@ -1,5 +1,7 @@
 @def title = "Getting Started with Julia"
 
+\FirstPostedLastUpdated{July 30, 2022}
+
 The following structure for this tutorial is as follows:
 
 1. [Installation Instructions](/pages/GettingStarted/installation)
