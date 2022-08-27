@@ -406,6 +406,7 @@ pre {
 	font-size: 10px;
 	text-transform: uppercase;
 	font-weight: 500;
+  font-family: monospace;
 	padding: 6px 10px 10px;
 	color: #795548;
 	background-color: transparent;
@@ -418,5 +419,9 @@ pre {
 .copy-button:focus,
 .copy-button:active {
 	outline: 0;
-	background-color: #eee9e6;
+	background-color: #c1d9ef;
+  border-radius: 15px;
+  font-size: 20px;
+  font-weight: 1000;
+  color: blue;
 }
