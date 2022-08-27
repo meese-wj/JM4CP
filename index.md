@@ -19,7 +19,7 @@ The downside?
 
 Julia is _young_. So it does not have nearly as much documentation and help as a language like Python (even though it really does have quite a bit).
 
-Julia is _different_. Most project design patterns physicists learn are either how to write scripts that can't be maintained in the long-run, or how to write code bases according the the _Object-Oriented Programming_ paradigm. Julia can be scripty, but it is certainly not an object-oriented language. So for most of us, the maintainability patterns based on an abstract type hierarchy with multiple-dispatch seem foreign and too difficult to implement.
+Julia is _different_. Most project design patterns physicists learn are either how to write scripts that can't be maintained in the long-run, or how to write code bases according to the _Object-Oriented Programming_ paradigm. Julia can be scripty, but it is certainly not an object-oriented language. So for most of us, the maintainability patterns based on an abstract type hierarchy with multiple-dispatch seem foreign and too difficult to implement.
 
 But once you get it, Julia is _beautiful_.
 
