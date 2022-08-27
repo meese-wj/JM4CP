@@ -18,7 +18,7 @@
 ================================================================== */
 
 html {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   font-size: var(--normal);
   color: var(--text-color);
 }
@@ -64,7 +64,7 @@ html {
 
 .page-foot {
   font-size: 80%;
-  font-family: Arial, serif;
+  font-family: 'Montserrat', Arial, serif;
   color: #a6a2a0;
   text-align: center;
   margin-top: 6em;
@@ -110,9 +110,10 @@ html {
     TITLES
 ================================================================== */
 
-.franklin-content h1 { font-size: 24px; }
-.franklin-content h2 { font-size: 22px; }
-.franklin-content h3 { font-size: 20px; }
+.franklin-content h1 { font-size: 26px; }
+.franklin-content h2 { font-size: 24px; }
+.franklin-content h3 { font-size: 22px; }
+.franklin-content h4 { font-size: 20px; }
 
 .franklin-content h1,
 h2,
@@ -132,6 +133,13 @@ h6 {
 
 .franklin-content h2 {
   padding-bottom: 0.3em;
+  border-bottom: 1px solid lightgrey;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.franklin-content h3 {
+  padding-bottom: 0.15em;
   border-bottom: 1px solid lightgrey;
   margin-top: 2em;
   margin-bottom: 1em;
