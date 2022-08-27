@@ -181,7 +181,7 @@ Other than that, there is not much else to variables. They can be named whatever
 
 The final piece I want to say, however, is that variables, like in Python, are just labels. They generally do not actually represent data; rather they _point_ to data. This is particularly meaningful for people coming to Julia from the world of C, C++, and Fortran, where variables represent actual data. This means that when variables are passed around, say to function methods as arguments, then it is **cheap** in Julia (as cheap as throwing around an integer).
 
-This is identical to Python, but it contrasts with C and C++ in particular where variables are passed around and _copied_ into functions by default. Thus, in Julia there is nothing from stopping any function from modifying the underlying data _pointed to_ by any of its arguments at any time. Meanwhile, in C/C++, a function would be modifying the _copy_ of the underlying data rather than the original. There are exceptions to this rule in Julia, though: \newtablink{primitive types}{https://docs.julialang.org/en/v1/manual/types/#Primitive-Types} like `Int`s and `Float`s or im`mutable` types cannot and will not be modified, _ever_. Any other variable representing more complicated types, like `Vector`s which are `mutable`, will never actually _be_ the values they point to, but will rather be just labels pointing to their values.
+This is identical to Python, but it contrasts with C and C++ in particular where variables are passed around and _copied_ into functions by default. Thus, in Julia there is nothing from stopping any function from modifying the underlying data _pointed to_ by any of its arguments at any time. Meanwhile, in C/C++, a function would be modifying the _copy_ of the underlying data rather than the original. There are exceptions to this rule in Julia, though: \newtablink{primitive types}{https://docs.julialang.org/en/v1/manual/types/#Primitive-Types} like `Int`s and `Float`s or immutable types cannot and will not be modified, _ever_. Any other variable representing more complicated types, like `Vector`s which are `mutable`, will never actually _be_ the values they point to, but will rather be just labels pointing to their values.
 
 That is as much as I want to go into these details at this point. This is a tutorial after all! And too many initial details can always be overwhelming. But I did want to say just a bit so it's always in the back of your mind.
 
@@ -268,7 +268,7 @@ y = x  # Errors because x is undefined outside of the local scope
 
 Unlike global scopes, the Julia compiler _loves_ local variables. This is because it knows in almost every case all the details about the variables' `Type` information. So it doesn't need to be weary of any surprises, and it can optimize as much as possible.
 
-I want to point out that in the example above, the argument variable `z` is actually a _local_ even though `zval = 42` is passed into it. What happens in these cases, since variables are just labels, is that a local copy of the label is created which points to the same data in memory. Then that new local label is used to access the data. When the function ends, then the local label is destroyed, but not the data it points to!
+I want to point out that in the example above, the argument variable `z` is actually a _local_ even though `zval = 42` is passed into it. What happens in these cases, since variables are just labels, is that a local copy of the label is created which points to the same data in memory[^1]\label{local_scope_head}. Then that new local label is used to access the data. When the function ends, then the local label is destroyed, but not the data it points to!
 
 There are some more technical details about local scopes that exist in Julia that I think are beyond the scope (😎) of this tutorial. For those interested, or for those unlucky enough to encounter a "soft-scope" error early on, I'll point you to \newtablink{documentation}{https://docs.julialang.org/en/v1/manual/variables-and-scoping/#Local-Scope} for more information.
 
@@ -293,3 +293,7 @@ This about covers what I think is the bare minimum to get started with writing J
 ## Built-in macros
 
 ## Is Julia a statically-typed language?
+
+## Footnotes
+
+[^1]: In this specific case, since `zval = 42` is a variable pointing to a primitive type, the local copy of the label is as expensive as a local copy of the data, and so Julia does the latter. This is a technicality that breaks since the example is so simple. However, the broader point I was making about functions modifying local copies of labels, while maintaining access to the original underlying data holds. [Go Back](#local_scope_head)
