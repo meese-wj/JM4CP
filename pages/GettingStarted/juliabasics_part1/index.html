@@ -1,4 +1,4 @@
-<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/JM4CP/libs/katex/katex.min.css"> <link rel=stylesheet  href="/JM4CP/libs/highlight/styles/github.min.css"> <link href="/JM4CP/css/franklin.css" rel=stylesheet > <link href="/JM4CP/css/vela.css" rel=stylesheet > <script src="/JM4CP/libs/vela/jquery.min.js"></script> <link href="http://fonts.cdnfonts.com/css/montserrat" rel=stylesheet > <link rel=icon  href="/JM4CP/assets/favicon.png"> <title>Julian Methods for Computational Physics</title> <div class="main-nav slideout-menu slideout-menu-left" id=menu > <div class=flex-container > <span class=sidebar-brand > <h3 style='font-size: 30px'><a href="/JM4CP/">JM4CP</a></h3> </span> </div> <nav class=sidebar-nav > <ul class=metismenu  id=metismenu  > <li><a href="/JM4CP/index.html">Home</a> <li><a href="" class=has-arrow >Getting Started</a> <ul> <li><a href="/JM4CP/pages/GettingStarted/gettingstarted">Tutorial Home</a> <li><a href="/JM4CP/pages/GettingStarted/installation">Installation Instructions</a> <li><a href="/JM4CP/pages/GettingStarted/pkg">using Pkg</a> <li><a href="/JM4CP/pages/GettingStarted/juliabasics_part1">Julia Basics I</a> <li><a href="/JM4CP/pages/GettingStarted/juliabasics_part2">Julia Basics II</a> </ul> <li><a href="/JM4CP/pages/helpful_resources">Helpful Resources</a> </ul> </nav> </div> <main id=panel  class="slidout-panel slideout-panel-left"> <div class="toggle-button hamburger hamburger--spin"> <div class=hamburger-box > <div class=hamburger-inner ></div> </div> </div> <h1 class="page title">Julia Basics I</h1> <hr> <div class=franklin-content ><h1 id=whats_julia_all_about ><a href="#whats_julia_all_about" class=header-anchor >What&#39;s Julia all about?</a></h1> <h2> <p> <em><strong>First Posted:</strong> August 6, 2022</em> </p> <p> <em><strong>Last Updated:</strong> August 27, 2022</em> </p> </h2> <p>In this tutorial, we&#39;ll go over a few Julia basics. We will only need the Julia <code>REPL</code> for this tutorial, which you can open simply by starting Julia.</p> <div class=note ><div class=title >⚠ Note</div> <div class=content ><p>On Windows, you can hit the <code>Windows</code> button on your keyboard to open the start menu and type <code>Julia</code> to find the executable. Alternatively, one can open the terminal and simply type <code>julia</code> on <code>*</code>nix systems, or <code>julia.exe</code> for Windows, into the command line.</p> <p>Either method will open an interactive command-line interface called the Julia <code>REPL</code> which stands for <code>R</code>ead-<code>E</code>valuate-<code>P</code>rint-<code>L</code>oop.</p></div></div> <p>The code that we will need to execute in the <code>REPL</code> will be outlined in code blocks with <em>solid</em> borders like so:</p> <pre><code class="julia hljs">println(<span class=hljs-string >&quot;Hello World&quot;</span>)</code></pre>
+<!doctype html> <html lang=en > <meta charset=UTF-8 > <meta name=viewport  content="width=device-width, initial-scale=1"> <link rel=stylesheet  href="/JM4CP/libs/katex/katex.min.css"> <link rel=stylesheet  href="/JM4CP/libs/highlight/styles/github.min.css"> <script src="/JM4CP/libs/clipboard.min.js"></script> <link href="/JM4CP/css/franklin.css" rel=stylesheet > <link href="/JM4CP/css/vela.css" rel=stylesheet > <script src="/JM4CP/libs/vela/jquery.min.js"></script> <link href="http://fonts.cdnfonts.com/css/montserrat" rel=stylesheet > <link rel=icon  href="/JM4CP/assets/favicon.png"> <title>Julian Methods for Computational Physics</title> <div class="main-nav slideout-menu slideout-menu-left" id=menu > <div class=flex-container > <span class=sidebar-brand > <h3 style='font-size: 30px'><a href="/JM4CP/">JM4CP</a></h3> </span> </div> <nav class=sidebar-nav > <ul class=metismenu  id=metismenu  > <li><a href="/JM4CP/index.html">Home</a> <li><a href="" class=has-arrow >Getting Started</a> <ul> <li><a href="/JM4CP/pages/GettingStarted/gettingstarted">Tutorial Home</a> <li><a href="/JM4CP/pages/GettingStarted/installation">Installation Instructions</a> <li><a href="/JM4CP/pages/GettingStarted/pkg">using Pkg</a> <li><a href="/JM4CP/pages/GettingStarted/juliabasics_part1">Julia Basics I</a> <li><a href="/JM4CP/pages/GettingStarted/juliabasics_part2">Julia Basics II</a> </ul> <li><a href="/JM4CP/pages/helpful_resources">Helpful Resources</a> </ul> </nav> </div> <main id=panel  class="slidout-panel slideout-panel-left"> <div class="toggle-button hamburger hamburger--spin"> <div class=hamburger-box > <div class=hamburger-inner ></div> </div> </div> <h1 class="page title">Julia Basics I</h1> <hr> <div class=franklin-content ><h1 id=whats_julia_all_about ><a href="#whats_julia_all_about" class=header-anchor >What&#39;s Julia all about?</a></h1> <h2> <p> <em><strong>First Posted:</strong> August 6, 2022</em> </p> <p> <em><strong>Last Updated:</strong> August 27, 2022</em> </p> </h2> <p>In this tutorial, we&#39;ll go over a few Julia basics. We will only need the Julia <code>REPL</code> for this tutorial, which you can open simply by starting Julia.</p> <div class=note ><div class=title >⚠ Note</div> <div class=content ><p>On Windows, you can hit the <code>Windows</code> button on your keyboard to open the start menu and type <code>Julia</code> to find the executable. Alternatively, one can open the terminal and simply type <code>julia</code> on <code>*</code>nix systems, or <code>julia.exe</code> for Windows, into the command line.</p> <p>Either method will open an interactive command-line interface called the Julia <code>REPL</code> which stands for <code>R</code>ead-<code>E</code>valuate-<code>P</code>rint-<code>L</code>oop.</p></div></div> <p>The code that we will need to execute in the <code>REPL</code> will be outlined in code blocks with <em>solid</em> borders like so:</p> <pre><code class="julia hljs">println(<span class=hljs-string >&quot;Hello World&quot;</span>)</code></pre>
 <p>and the output of these code blocks will be shown in code blocks with <em>dashed</em> borders as:</p>
 <div class=code-output ><pre><code class="plaintext hljs">Hello World
 </code></pre></div>
@@ -251,3 +251,65 @@ M834 80h400000v40h-400000z'/></svg></span></span></span><span class=vlist-s >​
   
     <script src="/JM4CP/libs/highlight/highlight.min.js"></script>
 <script>hljs.highlightAll();hljs.configure({tabReplace: '    '});</script>
+
+  
+  
+    <script>
+    (function(){
+    
+        // Get the elements.
+        // - the 'pre' element.
+        // - the 'div' with the 'paste-content' id.
+    
+        var pre = document.getElementsByTagName('pre');
+    
+        // Add a copy button in the 'pre' element.
+        // which only has the className of 'language-' or ' hljs'(if enable highlight.js pre-render).
+    
+        for (var i = 0; i < pre.length; i++) {
+            var tag_name = pre[i].children[0].className
+                    var isLanguage = tag_name.startsWith('language-') || tag_name.endsWith(' hljs');
+            if ( isLanguage ) {
+                var button           = document.createElement('button');
+                        button.className = 'copy-button';
+                        button.textContent = 'Copy';
+    
+                        pre[i].appendChild(button);
+            }
+        };
+    
+        // Run Clipboard
+    
+        var copyCode = new Clipboard('.copy-button', {
+            target: function(trigger) {
+                return trigger.previousElementSibling;
+        }
+        });
+    
+        // On success:
+        // - Change the "Copy" text to "Copied".
+        // - Swap it to "Copy" in 2s.
+        // - Lead user to the "contenteditable" area with Velocity scroll.
+    
+        copyCode.on('success', function(event) {
+            event.clearSelection();
+            event.trigger.textContent = 'Copied!';
+            window.setTimeout(function() {
+                event.trigger.textContent = 'Copy';
+            }, 2000);
+    
+        });
+    
+        // On error (Safari):
+        // - Change the  "Press Ctrl+C to copy"
+        // - Swap it to "Copy" in 2s.
+    
+        copyCode.on('error', function(event) {
+            event.trigger.textContent = 'Press "Ctrl + C" to copy';
+            window.setTimeout(function() {
+                event.trigger.textContent = 'Copy';
+            }, 5000);
+        });
+    
+    })();
+    </script>
