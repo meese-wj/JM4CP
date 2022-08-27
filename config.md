@@ -56,3 +56,19 @@ Add here global latex commands to use throughout your pages.
 ~~~
 ---
 }
+
+\newcommand{\NotEnoughTime}[]{
+
+ ```julia-repl
+(v1.8) pkg> activate ./Universe
+
+(Universe) pkg>
+
+julia> using Universe
+
+julia> Universe.make_more_time()
+[Info: Processing request...
+[Info: This may take a few moments.
+```
+
+}

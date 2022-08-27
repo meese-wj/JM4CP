@@ -161,7 +161,7 @@ I personally like to keep the `return` keyword there for two reasons. First, som
 
 Functions and their methods are only really useful if we're able to store their results somewhere. And where do we do this? In variables!
 
-To declare a variable in Julia, like most other languages that I know of, the name is written relative to the equals sign `=` which translates to *assignment* rather than *equals* like it does in mathematics. For example, if we want to store the value `4` in a variable named `thing`, then we would do so by writing
+To define a variable in Julia, like most other languages that I know of, the name is written relative to the equals sign `=` which translates to _assignment_ rather than _equals_ like it does in mathematics. For example, if we want to store the value `4` in a variable named `thing`, then we would do so by writing
 
 ```julia-repl
 julia> thing = 4
@@ -175,21 +175,108 @@ julia> 4 = thing
 ERROR: syntax: invalid assignment location "4"
 ```
 
-which *should* be allowed mathematically, but is not allowed syntactically.
+which _should_ be allowed mathematically, but is not allowed syntactically.
 
 Other than that, there is not much else to variables. They can be named whatever you like, other than Julia keywords like `function`, `for`, `if`, _etc._
 
-The final piece I want to say, however, is that variables, like in Python, are just labels. They generally do not actually represent data; rather they *point* to data. This is particularly meaningful for people coming to Julia from the world of C, C++, and Fortran, where variables represent actual data. This means that when variables are passed around, say to function methods as arguments, then it is **cheap** in Julia (as cheap as throwing around an integer).
+The final piece I want to say, however, is that variables, like in Python, are just labels. They generally do not actually represent data; rather they _point_ to data. This is particularly meaningful for people coming to Julia from the world of C, C++, and Fortran, where variables represent actual data. This means that when variables are passed around, say to function methods as arguments, then it is **cheap** in Julia (as cheap as throwing around an integer).
 
-This is identical to Python, but it contrasts with C and C++ especially where variables are passed around and *copied* into functions by default. This means that in Julia, however, there is nothing from stopping any function from modifying any of its arguments at any time, whereas in C/C++, a function would be modifying the *copy* rather than the original. There are exceptions to this rule in Julia, though: \newtablink{primitive types}{https://docs.julialang.org/en/v1/manual/types/#Primitive-Types} like `Int`s and `Float`s or im`mutable` types cannot and will not be modified, *ever*. Any other variable representing more complicated types, like `Vector`s which are `mutable`, will never actually *be* the values they point to, but will rather be just labels pointing to their values.
+This is identical to Python, but it contrasts with C and C++ especially where variables are passed around and _copied_ into functions by default. This means that in Julia, however, there is nothing from stopping any function from modifying any of its arguments at any time, whereas in C/C++, a function would be modifying the _copy_ rather than the original. There are exceptions to this rule in Julia, though: \newtablink{primitive types}{https://docs.julialang.org/en/v1/manual/types/#Primitive-Types} like `Int`s and `Float`s or im`mutable` types cannot and will not be modified, _ever_. Any other variable representing more complicated types, like `Vector`s which are `mutable`, will never actually _be_ the values they point to, but will rather be just labels pointing to their values.
 
 That is as much as I want to go into these details at this point. This is a tutorial afterall! And too many initial details can always be overwhelming. But I did want to say just a bit so it's always in the back of your mind.
 
 ### Scopes
 
-Before diving into the details about specific types and how to use them, we should first discuss scopes. These 
+Before diving into the details about specific types and how to use them, we should first discuss \newtablink{scopes}{https://docs.julialang.org/en/v1/manual/variables-and-scoping/}. These _regions of code_ represent where particular variables can be accessed and used.
+
+There are a few important scopes to keep in mind when just starting to code:
+
+#### The Global Scope
+
+Any variable written outside of `function`s, `struct`s, `let`s, `macro`s, `module`s, _etc._ , lives in the global scope and can be accessed by any other part of your code at any time (assuming what is requesting access knows that the variable has been defined before the call). All variables defined in the `REPL` are in the global scope. 
+
+I want to emphasize early on that it is generally considered bad form to write functions that depend on global variables. This is because, as mentioned in [Variables](#variables), variables are only labels that represent data, but they themselves are **not** the underlying data. So the actual data pointed to by any global variable, and more importantly its `Type`, at any time can change. The Julia compiler cannot know in advance how to handle this, and it in turn writes pretty slow code to handle the task in the most generic way it can. This problem is avoided, however, if one defines a global variable `const`, for instance in a function that `exp`onentiates like in the following example
+  
+```julia:./global_variable_performance
+const im_a_performant_global = 4
+
+my_performant_function(x) = exp( x * im_a_performant_global )
+```
+
+which will be performant because we promised the compiler that the global `im_a_performant_global` will never change, so its `Type` never will either.
+
+\codeinfo{
+To see just how much slower non-`const` globals can be, we can use the `BenchmarkTools` package in the standard library to accurately measure the performance between the two cases. First, we must [`Pkg.add`](/pages/GettingStarted/pkg) it to our environment like
+
+```julia-repl
+(my_environment) pkg> add BenchmarkTools
+```
+
+and use it in our code like
+
+```julia-repl
+julia> using BenchmarkTools
+```
+
+Then we will use its `@btime` macro to help us test the performance.
+
+We define a slow global
+
+```julia:./global_variable_performance
+im_not_a_performant_global = 4
+
+my_slow_function(x) = exp( x * im_not_a_performant_global )
+```
+
+and then benchmark both when `y = 1.0`. In order to properly use this `macro`, we must _interpolate_ the variable `y` into our expression using the `$` symbol.
+
+```julia:./global_variable_performance
+using BenchmarkTools # hide
+y = 1.0
+
+@btime my_performant_function($y)
+```
+
+\codeshow{./global_variable_performance}
+
+```julia:./global_variable_performance
+@btime my_slow_function($y)
+```
+
+\codeshow{./global_variable_performance}
+
+So, as we can see, the use of the `const` keyword improves the performance of global variables by almost an order of magnitude! Also, the `@btime` macro shows us the number of allocations made. In the performant case, there are zero, but in the slow case, there are several. This again shows the fact that the Julia compiler is writing generic code, and since the `typeof(im_not_a_performant_global)` can change, Julia makes slow heap allocations to be as general as possible.
+
+The takeaway is that if you **need** to use a global and you **need** speed, use `const`s.
+}
+
+#### The Local Scope
+
+Local scopes are created basically inside any type of \newtablink{code block}{https://docs.julialang.org/en/v1/manual/variables-and-scoping/#man-scope-table} in Julia. These scopes are wiped clean once they complete their lifecycle, and any variables defined inside them are completely inaccessible to parts of code outside of them. For example, the following snippet throws an error when we try to assign the local variable `x` to the global variable `y`:
+
+```julia
+function this_defines_a_local(z)
+    x = z
+    return nothing
+end
+
+zval = 42
+this_defines_a_local(zval)
+
+y = x  # Errors because x is undefined outside of the local scope
+```
+
+Unlike global scopes, the Julia compiler _loves_ local variables. This is because it knows in almost every case all the details about the variables' `Type` information. So it doesn't need to be weary of any surprises, and it can optimize as much as possible.
+
+I want to point out that in the example above, the argument variable `z` is actually a _local_ even though `zval = 42` is passed into it. What happens in these cases, since variables are just labels, is that a local copy of the label is created which points to the same data in memory. Then that new local label is used to access the data. When the function ends, then the local label is destroyed, but not the data it points to!
+
+There are some more technical details about local scopes that exist in Julia that I think are beyond the scope (😎) of this tutorial. For those interested, or for those unlucky enough to encounter a "soft-scope" error early on, I'll point you to \newtablink{documentation}{https://docs.julialang.org/en/v1/manual/variables-and-scoping/#Local-Scope} for more information.
+
+This about covers what I think is the bare minimum to get started with writing Julia code. From here, we will talk about helpful built-in types and how to use them.
 
 ## Helpful built-in types
+
+\NotEnoughTime
 
 ### Strings
 
