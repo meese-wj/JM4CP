@@ -98,7 +98,7 @@ I've tip-toed around some other important details to avoid overwhelming you with
 - [`Pkg.jl` documentation.](https://pkgdocs.julialang.org/v1/)
 - [Details on the `Project.toml` and `Manifest.toml`.](https://pkgdocs.julialang.org/v1/toml-files/)
 
-## Footnotes
+\Footnotes
 
 [^1]: The global Julia environment is named `v1.8` for Julia versions `1.8.x`. To access it again from the `fish` environment, or any other, simply write ```julia-repl
 (fish) pkg> activate

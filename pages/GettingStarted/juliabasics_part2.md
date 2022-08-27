@@ -294,6 +294,6 @@ This about covers what I think is the bare minimum to get started with writing J
 
 ## Is Julia a statically-typed language?
 
-## Footnotes
+\Footnotes
 
-[^1]: In this specific case, since `zval = 42` is a variable pointing to a primitive type, the local copy of the label is as expensive as a local copy of the data, and so Julia does the latter. This is a technicality that breaks since the example is so simple. However, the broader point I was making about functions modifying local copies of labels, while maintaining access to the original underlying data holds. [Go Back](#local_scope_head)
+[^1]: In this specific case, since `zval = 42` is a variable pointing to a primitive type, the local copy of the label is as expensive as a local copy of the data, and so Julia does the latter. This is a technicality that breaks since the example is so simple. However, the broader point I was making about functions modifying local copies of labels, while maintaining access to the original underlying data holds.

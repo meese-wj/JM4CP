@@ -57,6 +57,12 @@ Add here global latex commands to use throughout your pages.
 ---
 }
 
+\newcommand{\Footnotes}[]{
+## Footnotes
+
+Clicking on the specific footnote number will take you back to where you were in the text.
+}
+
 \newcommand{\NotEnoughTime}[]{
 
  ```julia-repl

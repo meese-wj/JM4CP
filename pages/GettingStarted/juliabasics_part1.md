@@ -296,7 +296,7 @@ Finally, we made use of concrete implementations of those `abstract` `Number` ty
 
 This tutorial, despite not going over _all_ basic types in Julia, sets us up to better understand how the Julia language works, and gives us the feel for some syntax. Now, we'll be able to move on to more complicated examples with the foundation we've built.
 
-## Footnotes
+\Footnotes
 
 [^1]: For the sake of completeness, I want to emphasize that in the OO world, it's not like integer and decimal addition somehow are executed as the same machine code. This implication came from the elementary example of `function`s and `methods`, the main conclusion generalizes well to user-defined `Type`s. In OO languages, it might generalize too all arguments of a function other than the first which is typically a self-reference to the object calling the function.
 
