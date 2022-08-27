@@ -159,7 +159,31 @@ I personally like to keep the `return` keyword there for two reasons. First, som
 
 ### Variables
 
-To be continued...
+Functions and their methods are only really useful if we're able to store their results somewhere. And where do we do this? In variables!
+
+To declare a variable in Julia, like most other languages that I know of, the name is written relative to the equals sign `=` which translates to *assignment* rather than *equals* like it does in mathematics. For example, if we want to store the value `4` in a variable named `thing`, then we would do so by writing
+
+```julia-repl
+julia> thing = 4
+4
+```
+
+This contrasts with
+
+```julia-repl
+julia> 4 = thing
+ERROR: syntax: invalid assignment location "4"
+```
+
+which *should* be allowed mathematically, but is not allowed syntactically.
+
+Other than that, there is not much else to variables. They can be named whatever you like, other than Julia keywords like `function`, `for`, `if`, _etc._
+
+The final piece I want to say, however, is that variables, like in Python, are just labels. They generally do not actually represent data; rather they *point* to data. This is particularly meaningful for people coming to Julia from the world of C, C++, and Fortran, where variables represent actual data. This means that when variables are passed around, say to function methods as arguments, then it is **cheap** in Julia (as cheap as throwing around an integer). 
+
+This is identical to Python, but it contrasts with C and C++ especially where variables are passed around and *copied* into functions by default. This means that in Julia, however, there is nothing from stopping any function from modifying any of its arguments at any time, whereas in C/C++, a function would be modifying the *copy* rather than the original. There are exceptions to this rule in Julia, though: primitive types like `Int`s and `Float`s or im`mutable` types cannot and will not be modified, *ever*. Any other variable representing more complicated types, like `Vector`s which are `mutable`, will never actually *be* the values they point to, but will rather be just labels pointing to their values.
+
+That is as much as I want to go into these details at this point. This is a tutorial afterall! And too many initial details can always be overwhelming. But I did want to say just a bit so it's always in the back of your mind.
 
 ### Scopes
 
