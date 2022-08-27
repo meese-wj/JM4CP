@@ -187,7 +187,7 @@ That is as much as I want to go into these details at this point. This is a tuto
 
 ### Scopes
 
-Before diving into the details about specific types and how to use them, we should first discuss \newtablink{scopes}{https://docs.julialang.org/en/v1/manual/variables-and-scoping/}. These _regions of code_ represent where particular variables can be accessed and used.
+Before diving into the details about specific types and how to use them, we should first discuss \newtablink{scopes.}{https://docs.julialang.org/en/v1/manual/variables-and-scoping/} These _regions of code_ represent where particular variables can be accessed and used.
 
 There are a few important scopes to keep in mind when just starting to code:
 
