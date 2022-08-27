@@ -114,10 +114,10 @@ my_slow_function(x) = exp( x * im_not_a_performant_global )</code></pre>
 <pre><code class="julia hljs">y = <span class=hljs-number >1.0</span>
 
 <span class=hljs-meta >@btime</span> my_performant_function($y)</code></pre>
-<div class=code-output ><pre><code class="plaintext hljs">  7.000 ns (0 allocations: 0 bytes)
+<div class=code-output ><pre><code class="plaintext hljs">  6.700 ns (0 allocations: 0 bytes)
 54.598150033144236</code></pre></div>
 <pre><code class="julia hljs"><span class=hljs-meta >@btime</span> my_slow_function($y)</code></pre>
-<div class=code-output ><pre><code class="plaintext hljs">  51.064 ns (3 allocations: 48 bytes)
+<div class=code-output ><pre><code class="plaintext hljs">  51.977 ns (3 allocations: 48 bytes)
 54.598150033144236</code></pre></div>
 <p>So, as we can see, the use of the <code>const</code> keyword improves the performance of global variables by almost an order of magnitude&#33; Also, the <code>@btime</code> macro shows us the number of allocations made. In the performant case, there are zero, but in the slow case, there are several. This again shows the fact that the Julia compiler is writing generic code, and since the <code>typeof&#40;im_not_a_performant_global&#41;</code> can change, Julia makes slow heap allocations to be as general as possible.</p>
 <p>The takeaway is that if you <strong>need</strong> to use a global and you <strong>need</strong> speed, use <code>const</code>s.</p></div></div>
